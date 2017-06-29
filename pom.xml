@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.taxjar</groupId>
+  <artifactId>taxjar-java</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+
+  <name>taxjar-java</name>
+  <description>TaxJar Java Sales Tax API Client</description>
+  <url>https://github.com/taxjar/taxjar-java</url>
+
+  <organization>
+    <name>TaxJar</name>
+    <url>https://www.taxjar.com</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>http://choosealicense.com/licenses/mit/</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:taxjar/taxjar-java.git</connection>
+    <developerConnection>scm:git:git@github.com:taxjar/taxjar-java.git</developerConnection>
+    <url>git@github.com:taxjar/taxjar-java.git</url>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-gson</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Remove later and target Java 1.7+ -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
