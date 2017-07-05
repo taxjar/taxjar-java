@@ -1,7 +1,6 @@
 package com.taxjar.model.taxes;
 
 import com.google.gson.annotations.SerializedName;
-import com.taxjar.model.transactions.Shipping;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class Breakdown {
     Float taxCollectable;
 
     @SerializedName("combined_tax_rate")
-    Float combinedTaxRtae;
+    Float combinedTaxRate;
 
     @SerializedName("state_taxable_amount")
     Float stateTaxableAmount;
@@ -107,8 +106,8 @@ public class Breakdown {
         return taxCollectable;
     }
 
-    public Float getCombinedTaxRtae() {
-        return combinedTaxRtae;
+    public Float getCombinedTaxRate() {
+        return combinedTaxRate;
     }
 
     public Float getStateTaxableAmount() {

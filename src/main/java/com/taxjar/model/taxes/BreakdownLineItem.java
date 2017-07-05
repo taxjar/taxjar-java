@@ -13,7 +13,7 @@ public class BreakdownLineItem {
     Float taxCollectable;
 
     @SerializedName("combined_tax_rate")
-    Float combinedTaxRtae;
+    Float combinedTaxRate;
 
     @SerializedName("state_taxable_amount")
     Float stateTaxableAmount;
@@ -103,8 +103,8 @@ public class BreakdownLineItem {
         return taxCollectable;
     }
 
-    public Float getCombinedTaxRtae() {
-        return combinedTaxRtae;
+    public Float getCombinedTaxRate() {
+        return combinedTaxRate;
     }
 
     public Float getStateTaxableAmount() {
