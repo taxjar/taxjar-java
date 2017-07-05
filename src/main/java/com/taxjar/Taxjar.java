@@ -32,7 +32,7 @@ import com.taxjar.net.Endpoints;
 
 public class Taxjar {
     public static final String API_BASE = "https://api.taxjar.com/v2/";
-    private static Endpoints apiService;
+    protected static Endpoints apiService;
 
     public Taxjar(final String apiToken) {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
