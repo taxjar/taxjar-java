@@ -119,4 +119,8 @@ public class Order {
     public Integer getUserId() {
         return userId;
     }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 }

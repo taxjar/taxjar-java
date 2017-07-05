@@ -16,7 +16,7 @@ public class LineItem {
     String description;
 
     @SerializedName("unit_price")
-    Float unit_price;
+    Float unitPrice;
 
     @SerializedName("discount")
     Float discount;
@@ -40,8 +40,8 @@ public class LineItem {
         return description;
     }
 
-    public Float getUnit_price() {
-        return unit_price;
+    public Float getUnitPrice() {
+        return unitPrice;
     }
 
     public Float getDiscount() {
