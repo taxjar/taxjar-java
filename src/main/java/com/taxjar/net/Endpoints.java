@@ -31,6 +31,9 @@ public interface Endpoints
     Call<TaxResponse> getTax(@Body Map<String, Object> params);
 
     @GET("transactions/orders")
+    Call<OrdersResponse> getOrders();
+
+    @GET("transactions/orders")
     Call<OrdersResponse> getOrders(@QueryMap Map<String, String> params);
 
     @GET("transactions/orders/{transactionId}")
@@ -44,6 +47,9 @@ public interface Endpoints
 
     @DELETE("transactions/orders/{transactionId}")
     Call<OrderResponse> deleteOrder(@Path("transactionId") String transactionId);
+
+    @GET("transactions/refunds")
+    Call<RefundsResponse> getRefunds();
 
     @GET("transactions/refunds")
     Call<RefundsResponse> getRefunds(@QueryMap Map<String, String> params);

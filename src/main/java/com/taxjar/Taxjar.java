@@ -226,6 +226,23 @@ public class Taxjar {
         });
     }
 
+    public OrdersResponse listOrders() throws TaxjarException {
+        Call<OrdersResponse> call = apiService.getOrders();
+
+        try {
+            Response<OrdersResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public OrdersResponse listOrders(Map<String, String> params) throws TaxjarException {
         Call<OrdersResponse> call = apiService.getOrders(params);
 
@@ -241,6 +258,31 @@ public class Taxjar {
         }
 
         return null;
+    }
+
+    public void listOrders(final Listener<OrdersResponse> listener) {
+        Call<OrdersResponse> call = apiService.getOrders();
+
+        call.enqueue(new Callback<OrdersResponse>() {
+            @Override
+            public void onResponse(Call<OrdersResponse> call, Response<OrdersResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrdersResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     public void listOrders(Map<String, String> params, final Listener<OrdersResponse> listener) {
@@ -436,6 +478,23 @@ public class Taxjar {
         });
     }
 
+    public RefundsResponse listRefunds() throws TaxjarException {
+        Call<RefundsResponse> call = apiService.getRefunds();
+
+        try {
+            Response<RefundsResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public RefundsResponse listRefunds(Map<String, String> params) throws TaxjarException {
         Call<RefundsResponse> call = apiService.getRefunds(params);
 
@@ -451,6 +510,31 @@ public class Taxjar {
         }
 
         return null;
+    }
+
+    public void listRefunds(final Listener<RefundsResponse> listener) {
+        Call<RefundsResponse> call = apiService.getRefunds();
+
+        call.enqueue(new Callback<RefundsResponse>() {
+            @Override
+            public void onResponse(Call<RefundsResponse> call, Response<RefundsResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RefundsResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     public void listRefunds(Map<String, String> params, final Listener<RefundsResponse> listener) {
