@@ -3,7 +3,6 @@ package com.taxjar.model;
 import com.taxjar.MockInterceptor;
 import com.taxjar.TaxjarMock;
 import com.taxjar.exception.TaxjarException;
-import com.taxjar.model.categories.CategoryResponse;
 import com.taxjar.model.taxes.TaxResponse;
 import com.taxjar.net.Listener;
 import junit.framework.TestCase;
