@@ -26,7 +26,7 @@ Add the following dependency to your project's build file:
 compile "com.taxjar:taxjar-java:1.0.0"
 ```
 
-### Other
+### Manual Installation
 
 You can manually install the following JARs (including dependencies) here:
 
