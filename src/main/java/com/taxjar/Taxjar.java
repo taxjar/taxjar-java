@@ -1,10 +1,20 @@
 package com.taxjar;
 
-import java.io.IOException;
-import java.util.Map;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.categories.CategoryResponse;
+import com.taxjar.model.nexus.RegionResponse;
+import com.taxjar.model.rates.RateResponse;
+import com.taxjar.model.summarized_rates.SummaryRateResponse;
+import com.taxjar.model.taxes.TaxResponse;
+import com.taxjar.model.transactions.OrderResponse;
+import com.taxjar.model.transactions.OrdersResponse;
+import com.taxjar.model.transactions.RefundResponse;
+import com.taxjar.model.transactions.RefundsResponse;
+import com.taxjar.model.validations.ValidationResponse;
+import com.taxjar.net.Endpoints;
+import com.taxjar.net.Listener;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -16,19 +26,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.taxjar.exception.TaxjarException;
-import com.taxjar.model.categories.CategoryResponse;
-import com.taxjar.model.transactions.OrderResponse;
-import com.taxjar.model.transactions.OrdersResponse;
-import com.taxjar.model.transactions.RefundResponse;
-import com.taxjar.model.transactions.RefundsResponse;
-import com.taxjar.model.rates.RateResponse;
-import com.taxjar.model.taxes.TaxResponse;
-import com.taxjar.model.nexus.RegionResponse;
-import com.taxjar.model.summarized_rates.SummaryRateResponse;
-import com.taxjar.model.validations.ValidationResponse;
-import com.taxjar.net.Listener;
-import com.taxjar.net.Endpoints;
+import java.io.IOException;
+import java.util.Map;
 
 public class Taxjar {
     public static final String API_BASE = "https://api.taxjar.com/v2/";

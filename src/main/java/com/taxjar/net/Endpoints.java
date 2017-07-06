@@ -1,20 +1,20 @@
 package com.taxjar.net;
 
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.http.*;
-
 import com.taxjar.model.categories.CategoryResponse;
+import com.taxjar.model.nexus.RegionResponse;
 import com.taxjar.model.rates.RateResponse;
+import com.taxjar.model.summarized_rates.SummaryRateResponse;
 import com.taxjar.model.taxes.TaxResponse;
 import com.taxjar.model.transactions.OrderResponse;
 import com.taxjar.model.transactions.OrdersResponse;
 import com.taxjar.model.transactions.RefundResponse;
 import com.taxjar.model.transactions.RefundsResponse;
-import com.taxjar.model.nexus.RegionResponse;
-import com.taxjar.model.summarized_rates.SummaryRateResponse;
 import com.taxjar.model.validations.ValidationResponse;
+
+import retrofit2.Call;
+import retrofit2.http.*;
+
+import java.util.Map;
 
 public interface Endpoints
 {

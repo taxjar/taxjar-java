@@ -1,7 +1,6 @@
 package com.taxjar.model.taxes;
 
 import com.google.gson.annotations.SerializedName;
-import com.taxjar.model.taxes.Breakdown;
 
 public class Tax {
     @SerializedName("order_total_amount")
