@@ -31,6 +31,7 @@ import java.util.Map;
 
 public class Taxjar {
     public static final String API_BASE = "https://api.taxjar.com/v2/";
+    public static final String VERSION = "1.0.0";
     protected static Endpoints apiService;
 
     public Taxjar(final String apiToken) {
@@ -39,6 +40,7 @@ public class Taxjar {
             public okhttp3.Response intercept(Chain chain) throws IOException {
                 Request newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + apiToken)
+                        .addHeader("User-Agent", "TaxJarJava/" + VERSION)
                         .build();
                 return chain.proceed(newRequest);
             }
