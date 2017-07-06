@@ -3,6 +3,9 @@ package com.taxjar.model.validations;
 import com.google.gson.annotations.SerializedName;
 
 public class ViesResponse {
+    @SerializedName("country_code")
+    String countryCode;
+
     @SerializedName("vat_number")
     String vatNumber;
 
@@ -17,6 +20,10 @@ public class ViesResponse {
 
     @SerializedName("address")
     String address;
+
+    public String getCountryCode() {
+        return countryCode;
+    }
 
     public String getVatNumber() {
         return vatNumber;
