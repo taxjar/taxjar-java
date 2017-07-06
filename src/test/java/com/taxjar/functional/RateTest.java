@@ -1,4 +1,4 @@
-package com.taxjar.model;
+package com.taxjar.functional;
 
 import com.taxjar.MockInterceptor;
 import com.taxjar.TaxjarMock;
