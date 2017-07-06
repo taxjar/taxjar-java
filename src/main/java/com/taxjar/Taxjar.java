@@ -873,7 +873,7 @@ public class Taxjar {
         return null;
     }
 
-    public void validate(final Listener<SummaryRateResponse> listener) {
+    public void summaryRates(final Listener<SummaryRateResponse> listener) {
         Call<SummaryRateResponse> call = apiService.getSummaryRates();
 
         call.enqueue(new Callback<SummaryRateResponse>() {
