@@ -1,0 +1,5 @@
+{
+  "error": "Bad Request",
+  "detail": "Your request format is bad.",
+  "status": 400
+}
