@@ -688,6 +688,48 @@ public class Taxjar {
         });
     }
 
+    public RefundResponse updateRefund(String transactionId, Map<String, Object> params) throws TaxjarException {
+        Call<RefundResponse> call = apiService.updateRefund(transactionId, params);
+
+        try {
+            Response<RefundResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void updateRefund(String transactionId, Map<String, Object> params, final Listener<RefundResponse> listener) {
+        Call<RefundResponse> call = apiService.updateRefund(transactionId, params);
+
+        call.enqueue(new Callback<RefundResponse>() {
+            @Override
+            public void onResponse(Call<RefundResponse> call, Response<RefundResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RefundResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
     public RefundResponse deleteRefund(String transactionId) throws TaxjarException {
         Call<RefundResponse> call = apiService.deleteRefund(transactionId);
 
