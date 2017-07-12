@@ -135,6 +135,7 @@ public class TaxExample {
             params.put("from_state", "CA");
             params.put("from_city", "La Jolla");
             params.put("from_street", "9500 Gilman Drive");
+            params.put("to_country", "US");
             params.put("to_zip", "90002");
             params.put("to_state", "CA");
             params.put("to_city", "Los Angeles");
@@ -245,14 +246,14 @@ public class CreateOrderExample {
             params.put("to_zip", "90002");
             params.put("to_city", "Los Angeles");
             params.put("to_street", "123 Palm Grove Ln");
-            params.put("amount", 15);
+            params.put("amount", 16.5);
             params.put("shipping", 1.5);
             params.put("sales_tax", 0.95);
 
             List<Map> lineItems = new ArrayList();
             Map<String, Object> lineItem = new HashMap<>();
             lineItem.put("quantity", 1);
-            lineItem.put("product_identifier", "12-342-43-0");
+            lineItem.put("product_identifier", "12-34243-0");
             lineItem.put("description", "Heavy Widget");
             lineItem.put("unit_price", 15);
             lineItem.put("sales_tax", 0.95);
@@ -293,14 +294,14 @@ public class UpdateOrderExample {
             params.put("to_zip", "90002");
             params.put("to_city", "Los Angeles");
             params.put("to_street", "123 Palm Grove Ln");
-            params.put("amount", 15);
-            params.put("shipping", 1.5);
+            params.put("amount", 17);
+            params.put("shipping", 2);
             params.put("sales_tax", 0.95);
 
             List<Map> lineItems = new ArrayList();
             Map<String, Object> lineItem = new HashMap<>();
             lineItem.put("quantity", 1);
-            lineItem.put("product_identifier", "12-342-43-0");
+            lineItem.put("product_identifier", "12-34243-0");
             lineItem.put("description", "Heavy Widget");
             lineItem.put("unit_price", 15);
             lineItem.put("sales_tax", 0.95);
@@ -412,14 +413,14 @@ public class CreateRefundExample {
             params.put("to_zip", "90002");
             params.put("to_city", "Los Angeles");
             params.put("to_street", "123 Palm Grove Ln");
-            params.put("amount", 15);
+            params.put("amount", 16.5);
             params.put("shipping", 1.5);
             params.put("sales_tax", 0.95);
 
             List<Map> lineItems = new ArrayList();
             Map<String, Object> lineItem = new HashMap<>();
             lineItem.put("quantity", 1);
-            lineItem.put("product_identifier", "12-342-43-0");
+            lineItem.put("product_identifier", "12-34243-0");
             lineItem.put("description", "Heavy Widget");
             lineItem.put("unit_price", 15);
             lineItem.put("sales_tax", 0.95);
@@ -460,14 +461,14 @@ public class UpdateRefundExample {
             params.put("to_zip", "90002");
             params.put("to_city", "Los Angeles");
             params.put("to_street", "123 Palm Grove Ln");
-            params.put("amount", 15);
-            params.put("shipping", 1.5);
+            params.put("amount", 17);
+            params.put("shipping", 2);
             params.put("sales_tax", 0.95);
 
             List<Map> lineItems = new ArrayList();
             Map<String, Object> lineItem = new HashMap<>();
             lineItem.put("quantity", 1);
-            lineItem.put("product_identifier", "12-342-43-0");
+            lineItem.put("product_identifier", "12-34243-0");
             lineItem.put("description", "Heavy Widget");
             lineItem.put("unit_price", 15);
             lineItem.put("sales_tax", 0.95);
