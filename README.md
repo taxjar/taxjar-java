@@ -4,7 +4,7 @@ Official Java client for [SmartCalcs](http://www.taxjar.com/api/) by [TaxJar](ht
 
 ## Getting Started
 
-We recommend installing taxjar-java with [Maven](https://maven.apache.org/what-is-maven.html). Before authenticating, [get your API key from TaxJar](https://app.taxjar.com/api_sign_up/plus/).
+We recommend installing taxjar-java with [Maven](https://maven.apache.org/what-is-maven.html) or [Gradle](https://gradle.org/). Before authenticating, [get your API key from TaxJar](https://app.taxjar.com/api_sign_up/plus/).
 
 ### Maven
 
@@ -16,6 +16,14 @@ Add the following dependency to your project's `pom.xml` file:
     <artifactId>taxjar-java</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
+
+### Gradle
+
+Add the following dependency to your project's build file:
+
+```
+compile "com.taxjar:taxjar-java:1.0.0"
 ```
 
 ### Manual Installation
