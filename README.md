@@ -38,7 +38,7 @@ You can manually install the following JARs (including dependencies) here:
 
 taxjar-java is built for **Java 1.7+** and requires the following dependencies:
 
-- [Retrofit](https://github.com/square/retrofit)
+- [Retrofit](https://github.com/square/retrofit) - Includes [OkHttp](https://github.com/square/okhttp) and [Gson](https://github.com/google/gson)
 - [Retrofit Converter Gson](https://github.com/square/retrofit/tree/master/retrofit-converters/gson)
 
 ## Authentication
@@ -588,7 +588,7 @@ More information can be found at [TaxJar Developers](http://developers.taxjar.co
 
 ## License
 
-TaxJar.net is released under the [MIT License](https://github.com/taxjar/taxjar-java/blob/master/LICENSE.txt).
+taxjar-java is released under the [MIT License](https://github.com/taxjar/taxjar-java/blob/master/LICENSE.txt).
 
 ## Support
 
