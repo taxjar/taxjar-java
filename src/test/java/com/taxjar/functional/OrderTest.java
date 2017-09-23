@@ -97,6 +97,7 @@ public class OrderTest extends TestCase {
         assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
@@ -125,6 +126,7 @@ public class OrderTest extends TestCase {
                 assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
@@ -179,6 +181,7 @@ public class OrderTest extends TestCase {
         assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
@@ -229,6 +232,7 @@ public class OrderTest extends TestCase {
                 assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
@@ -283,6 +287,7 @@ public class OrderTest extends TestCase {
         assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
@@ -333,6 +338,7 @@ public class OrderTest extends TestCase {
                 assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());

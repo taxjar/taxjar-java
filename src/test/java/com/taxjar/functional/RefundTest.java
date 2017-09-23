@@ -98,6 +98,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
@@ -127,6 +128,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
@@ -182,6 +184,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
@@ -233,6 +236,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
@@ -288,6 +292,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
         assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
         assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
         assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
         assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
         assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
@@ -339,6 +344,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
                 assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
                 assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
                 assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
                 assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
                 assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());

@@ -15,6 +15,9 @@ public class LineItem {
     @SerializedName("description")
     String description;
 
+    @SerializedName("product_tax_code")
+    String productTaxCode;
+
     @SerializedName("unit_price")
     Float unitPrice;
 
@@ -38,6 +41,10 @@ public class LineItem {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getProductTaxCode() {
+        return productTaxCode;
     }
 
     public Float getUnitPrice() {
