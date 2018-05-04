@@ -77,7 +77,7 @@ public class Taxjar {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(this.apiUrl)
+                .baseUrl(this.apiUrl + "/" + API_VERSION + "/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
