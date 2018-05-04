@@ -30,7 +30,7 @@ public final class TaxjarMock extends Taxjar {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE)
+                .baseUrl(DEFAULT_API_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
