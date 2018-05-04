@@ -578,6 +578,28 @@ public class SummarizedRatesExample {
 }
 ```
 
+## Sandbox Environment
+
+You can easily configure the client to use the [TaxJar Sandbox](https://developers.taxjar.com/api/reference/#sandbox-environment):
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class SandboxExample {
+
+    public static void main(String[] args) {
+        Map<String, String> params = new HashMap<>();
+        params.put("apiUrl", Taxjar.SANDBOX_API_URL);
+
+        Taxjar client = new Taxjar("YOUR SANDBOX API TOKEN", params);
+    }
+
+}
+```
+
 ## Tests
 
 We use [JUnit](http://junit.org/) v3.8.1 with a custom interceptor for Retrofit to directly test client methods.
