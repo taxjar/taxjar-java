@@ -41,16 +41,18 @@ public class Taxjar {
     public Taxjar(final String apiToken) {
         this.apiToken = apiToken;
         this.apiUrl = DEFAULT_API_URL;
-        this.buildClient(null);
+        buildClient(null);
     }
 
     public Taxjar(final String apiToken, Map<String, String> params) {
         this.apiToken = apiToken;
         this.apiUrl = DEFAULT_API_URL;
-        this.buildClient(params);
+        buildClient(params);
     }
 
     public void buildClient(Map<String, String> params) {
+        final String apiToken = this.apiToken;
+
         if (params != null) {
             for (Map.Entry<String, String> param : params.entrySet()) {
                 if (param.getKey() == "apiUrl") {
@@ -58,8 +60,6 @@ public class Taxjar {
                 }
             }
         }
-
-        final String apiToken = this.apiToken;
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
@@ -82,12 +82,12 @@ public class Taxjar {
                 .client(client)
                 .build();
 
-        this.apiService = retrofit.create(Endpoints.class);
+        apiService = retrofit.create(Endpoints.class);
     }
 
     public String getApiConfig(String key) {
         try {
-            return this.getClass().getDeclaredField(key).get(this).toString();
+            return getClass().getDeclaredField(key).get(this).toString();
         } catch (NoSuchFieldException | IllegalAccessException ex) {
             return "";
         }
@@ -95,8 +95,8 @@ public class Taxjar {
 
     public void setApiConfig(String key, String value) {
         try {
-            this.getClass().getDeclaredField(key).set(this, value);
-            this.buildClient(null);
+            getClass().getDeclaredField(key).set(this, value);
+            buildClient(null);
         } catch (NoSuchFieldException | IllegalAccessException ex) {
             // No-op
         }

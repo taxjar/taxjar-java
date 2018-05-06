@@ -18,7 +18,6 @@ public class ConfigTest extends TestCase {
         params.put("apiUrl", Taxjar.SANDBOX_API_URL);
 
         client = new Taxjar("TEST", params);
-        client.setApiConfig("apiUrl", Taxjar.SANDBOX_API_URL);
         assertEquals(client.getApiConfig("apiUrl"), Taxjar.SANDBOX_API_URL);
     }
 
@@ -30,5 +29,8 @@ public class ConfigTest extends TestCase {
     public void testSetApiConfig() {
         client.setApiConfig("apiUrl", Taxjar.SANDBOX_API_URL);
         assertEquals(client.getApiConfig("apiUrl"), Taxjar.SANDBOX_API_URL);
+
+        client.setApiConfig("apiToken", "foobar");
+        assertEquals(client.getApiConfig("apiToken"), "foobar");
     }
 }
