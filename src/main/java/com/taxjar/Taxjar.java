@@ -30,11 +30,37 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Taxjar {
-    public static final String API_BASE = "https://api.taxjar.com/v2/";
+    public static final String DEFAULT_API_URL = "https://api.taxjar.com";
+    public static final String SANDBOX_API_URL = "https://api.sandbox.taxjar.com";
+    public static final String API_VERSION = "v2";
     public static final String VERSION = "1.0.1";
     protected static Endpoints apiService;
+    protected static String apiUrl;
+    protected static String apiToken;
 
     public Taxjar(final String apiToken) {
+        this.apiToken = apiToken;
+        this.apiUrl = DEFAULT_API_URL;
+        buildClient(null);
+    }
+
+    public Taxjar(final String apiToken, Map<String, String> params) {
+        this.apiToken = apiToken;
+        this.apiUrl = DEFAULT_API_URL;
+        buildClient(params);
+    }
+
+    public void buildClient(Map<String, String> params) {
+        final String apiToken = this.apiToken;
+
+        if (params != null) {
+            for (Map.Entry<String, String> param : params.entrySet()) {
+                if (param.getKey() == "apiUrl") {
+                    this.apiUrl = param.getValue();
+                }
+            }
+        }
+
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -51,12 +77,29 @@ public class Taxjar {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE)
+                .baseUrl(this.apiUrl + "/" + API_VERSION + "/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
 
         apiService = retrofit.create(Endpoints.class);
+    }
+
+    public String getApiConfig(String key) {
+        try {
+            return getClass().getDeclaredField(key).get(this).toString();
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            return "";
+        }
+    }
+
+    public void setApiConfig(String key, String value) {
+        try {
+            getClass().getDeclaredField(key).set(this, value);
+            buildClient(null);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            // No-op
+        }
     }
 
     public CategoryResponse categories() throws TaxjarException {
