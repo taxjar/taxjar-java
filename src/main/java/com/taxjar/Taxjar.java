@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.taxjar.exception.TaxjarException;
 import com.taxjar.model.categories.CategoryResponse;
+import com.taxjar.model.customers.CustomerResponse;
+import com.taxjar.model.customers.CustomersResponse;
 import com.taxjar.model.nexus.RegionResponse;
 import com.taxjar.model.rates.RateResponse;
 import com.taxjar.model.summarized_rates.SummaryRateResponse;
@@ -811,6 +813,258 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public CustomersResponse listCustomers() throws TaxjarException {
+        Call<CustomersResponse> call = apiService.getCustomers();
+
+        try {
+            Response<CustomersResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public CustomersResponse listCustomers(Map<String, String> params) throws TaxjarException {
+        Call<CustomersResponse> call = apiService.getCustomers(params);
+
+        try {
+            Response<CustomersResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void listCustomers(final Listener<CustomersResponse> listener) {
+        Call<CustomersResponse> call = apiService.getCustomers();
+
+        call.enqueue(new Callback<CustomersResponse>() {
+            @Override
+            public void onResponse(Call<CustomersResponse> call, Response<CustomersResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomersResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void listCustomers(Map<String, String> params, final Listener<CustomersResponse> listener) {
+        Call<CustomersResponse> call = apiService.getCustomers(params);
+
+        call.enqueue(new Callback<CustomersResponse>() {
+            @Override
+            public void onResponse(Call<CustomersResponse> call, Response<CustomersResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomersResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public CustomerResponse showCustomer(String customerId) throws TaxjarException {
+        Call<CustomerResponse> call = apiService.getCustomer(customerId);
+
+        try {
+            Response<CustomerResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void showCustomer(String customerId, final Listener<CustomerResponse> listener) {
+        Call<CustomerResponse> call = apiService.getCustomer(customerId);
+
+        call.enqueue(new Callback<CustomerResponse>() {
+            @Override
+            public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public CustomerResponse createCustomer(Map<String, Object> params) throws TaxjarException {
+        Call<CustomerResponse> call = apiService.createCustomer(params);
+
+        try {
+            Response<CustomerResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void createCustomer(Map<String, Object> params, final Listener<CustomerResponse> listener) {
+        Call<CustomerResponse> call = apiService.createCustomer(params);
+
+        call.enqueue(new Callback<CustomerResponse>() {
+            @Override
+            public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public CustomerResponse updateCustomer(String customerId, Map<String, Object> params) throws TaxjarException {
+        Call<CustomerResponse> call = apiService.updateCustomer(customerId, params);
+
+        try {
+            Response<CustomerResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void updateCustomer(String customerId, Map<String, Object> params, final Listener<CustomerResponse> listener) {
+        Call<CustomerResponse> call = apiService.updateCustomer(customerId, params);
+
+        call.enqueue(new Callback<CustomerResponse>() {
+            @Override
+            public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public CustomerResponse deleteCustomer(String customerId) throws TaxjarException {
+        Call<CustomerResponse> call = apiService.deleteCustomer(customerId);
+
+        try {
+            Response<CustomerResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void deleteCustomer(String customerId, final Listener<CustomerResponse> listener) {
+        Call<CustomerResponse> call = apiService.deleteCustomer(customerId);
+
+        call.enqueue(new Callback<CustomerResponse>() {
+            @Override
+            public void onResponse(Call<CustomerResponse> call, Response<CustomerResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });

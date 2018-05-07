@@ -507,6 +507,171 @@ public class DeleteOrderExample {
 }
 ```
 
+### List customers
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.customers.CustomersResponse;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ListCustomersExample {
+
+    public static void main(String[] args) {
+        Taxjar client = new Taxjar("YOUR API TOKEN");
+        
+        try {
+            CustomersResponse res = client.listCustomers();
+        } catch (TaxjarException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
+### Show customer
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.customers.CustomerResponse;
+
+public class ShowCustomerExample {
+
+    public static void main(String[] args) {
+        Taxjar client = new Taxjar("YOUR API TOKEN");
+        
+        try {
+            CustomerResponse res = client.showCustomer("123");
+        } catch (TaxjarException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
+### Create customer
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.customers.CustomerResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CreateCustomerExample {
+
+    public static void main(String[] args) {
+        Taxjar client = new Taxjar("YOUR API TOKEN");
+        
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("customer_id", "123");
+            params.put("exemption_type", "wholesale");
+            params.put("name", "Dunder Mifflin Paper Company");
+            params.put("country", "US");
+            params.put("state", "PA");
+            params.put("zip", "18504");
+            params.put("city", "Scranton");
+            params.put("street", "1725 Slough Avenue");
+
+            List<Map> exemptRegions = new ArrayList();
+
+            Map<String, String> exemptRegion = new HashMap<>();
+            exemptRegion.put("country", "US");
+            exemptRegion.put("state", "FL");
+
+            Map<String, String> exemptRegion2 = new HashMap<>();
+            exemptRegion.put("country", "US");
+            exemptRegion.put("state", "PA");
+
+            exemptRegions.add(exemptRegion);
+            exemptRegions.add(exemptRegion2);
+
+            params.put("exempt_regions", exemptRegions);
+
+            CustomerResponse res = client.createCustomer(params);
+        } catch (TaxjarException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
+### Update customer
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.customers.CustomerResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class UpdateCustomerExample {
+
+    public static void main(String[] args) {
+        Taxjar client = new Taxjar("YOUR API TOKEN");
+        
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("customer_id", "123");
+            params.put("exemption_type", "wholesale");
+            params.put("name", "Sterling Cooper");
+            params.put("country", "US");
+            params.put("state", "NY");
+            params.put("zip", "10010");
+            params.put("city", "New York");
+            params.put("street", "405 Madison Ave");
+
+            List<Map> exemptRegions = new ArrayList();
+
+            Map<String, String> exemptRegion = new HashMap<>();
+            exemptRegion.put("country", "US");
+            exemptRegion.put("state", "NY");
+
+            exemptRegions.add(exemptRegion);
+
+            params.put("exempt_regions", exemptRegions);
+
+            CustomerResponse res = client.updateCustomer("123", params);
+        } catch (TaxjarException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
+### Delete customer
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import com.taxjar.model.customers.CustomerResponse;
+
+public class DeleteCustomerExample {
+
+    public static void main(String[] args) {
+        Taxjar client = new Taxjar("YOUR API TOKEN");
+        
+        try {
+            CustomerResponse res = client.deleteCustomer("123");
+        } catch (TaxjarException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+```
+
 ### List nexus regions
 
 ```java

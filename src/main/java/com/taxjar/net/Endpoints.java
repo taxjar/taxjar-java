@@ -1,6 +1,8 @@
 package com.taxjar.net;
 
 import com.taxjar.model.categories.CategoryResponse;
+import com.taxjar.model.customers.CustomerResponse;
+import com.taxjar.model.customers.CustomersResponse;
 import com.taxjar.model.nexus.RegionResponse;
 import com.taxjar.model.rates.RateResponse;
 import com.taxjar.model.summarized_rates.SummaryRateResponse;
@@ -65,6 +67,24 @@ public interface Endpoints
 
     @DELETE("transactions/refunds/{transactionId}")
     Call<RefundResponse> deleteRefund(@Path("transactionId") String transactionId);
+
+    @GET("customers")
+    Call<CustomersResponse> getCustomers();
+
+    @GET("customers")
+    Call<CustomersResponse> getCustomers(@QueryMap Map<String, String> params);
+
+    @GET("customers/{customerId}")
+    Call<CustomerResponse> getCustomer(@Path("customerId") String customerId);
+
+    @POST("customers")
+    Call<CustomerResponse> createCustomer(@Body Map<String, Object> params);
+
+    @PUT("customers/{customerId}")
+    Call<CustomerResponse> updateCustomer(@Path("customerId") String customerId, @Body Map<String, Object> params);
+
+    @DELETE("customers/{customerId}")
+    Call<CustomerResponse> deleteCustomer(@Path("customerId") String customerId);
 
     @GET("nexus/regions")
     Call<RegionResponse> getRegions();
