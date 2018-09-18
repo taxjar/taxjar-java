@@ -14,7 +14,7 @@ Add the following dependency to your project's `pom.xml` file:
 <dependency>
     <groupId>com.taxjar</groupId>
     <artifactId>taxjar-java</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -23,7 +23,7 @@ Add the following dependency to your project's `pom.xml` file:
 Add the following dependency to your project's build file:
 
 ```
-compile "com.taxjar:taxjar-java:1.1.0"
+compile "com.taxjar:taxjar-java:1.2.0"
 ```
 
 ### Manual Installation
