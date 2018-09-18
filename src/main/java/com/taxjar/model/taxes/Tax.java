@@ -29,6 +29,9 @@ public class Tax {
 
     // ---
 
+    @SerializedName("jurisdictions")
+    Jurisdictions jurisdictions;
+
     @SerializedName("breakdown")
     Breakdown breakdown;
 
@@ -63,6 +66,8 @@ public class Tax {
     public String getTaxSource() {
         return taxSource;
     }
+
+    public Jurisdictions getJurisdictions() { return jurisdictions; }
 
     public Breakdown getBreakdown() {
         return breakdown;

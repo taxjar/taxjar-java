@@ -62,6 +62,10 @@ public class TaxTest extends TestCase {
         assertEquals((Boolean) true, res.tax.getHasNexus());
         assertEquals((Boolean) true, res.tax.getFreightTaxable());
         assertEquals("destination", res.tax.getTaxSource());
+        assertEquals("US", res.tax.getJurisdictions().getCountry());
+        assertEquals("CA", res.tax.getJurisdictions().getState());
+        assertEquals("LOS ANGELES", res.tax.getJurisdictions().getCounty());
+        assertEquals("LOS ANGELES", res.tax.getJurisdictions().getCity());
         assertEquals(16.5f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(1.16f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.07f, res.tax.getBreakdown().getCombinedTaxRate());
@@ -124,6 +128,10 @@ public class TaxTest extends TestCase {
                 assertEquals((Boolean) true, res.tax.getHasNexus());
                 assertEquals((Boolean) true, res.tax.getFreightTaxable());
                 assertEquals("destination", res.tax.getTaxSource());
+                assertEquals("US", res.tax.getJurisdictions().getCountry());
+                assertEquals("CA", res.tax.getJurisdictions().getState());
+                assertEquals("LOS ANGELES", res.tax.getJurisdictions().getCounty());
+                assertEquals("LOS ANGELES", res.tax.getJurisdictions().getCity());
                 assertEquals(16.5f, res.tax.getBreakdown().getTaxableAmount());
                 assertEquals(1.16f, res.tax.getBreakdown().getTaxCollectable());
                 assertEquals(0.07f, res.tax.getBreakdown().getCombinedTaxRate());
@@ -189,6 +197,8 @@ public class TaxTest extends TestCase {
         assertEquals((Boolean) true, res.tax.getHasNexus());
         assertEquals((Boolean) true, res.tax.getFreightTaxable());
         assertEquals("destination", res.tax.getTaxSource());
+        assertEquals("CA", res.tax.getJurisdictions().getCountry());
+        assertEquals("ON", res.tax.getJurisdictions().getState());
         assertEquals(26.95f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(3.5f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.13f, res.tax.getBreakdown().getCombinedTaxRate());
@@ -230,6 +240,7 @@ public class TaxTest extends TestCase {
         assertEquals((Boolean) true, res.tax.getHasNexus());
         assertEquals((Boolean) true, res.tax.getFreightTaxable());
         assertEquals("destination", res.tax.getTaxSource());
+        assertEquals("FI", res.tax.getJurisdictions().getCountry());
         assertEquals(26.95f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(6.47f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.24f, res.tax.getBreakdown().getCombinedTaxRate());
