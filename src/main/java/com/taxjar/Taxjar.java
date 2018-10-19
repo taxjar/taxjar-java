@@ -14,6 +14,7 @@ import com.taxjar.model.transactions.OrderResponse;
 import com.taxjar.model.transactions.OrdersResponse;
 import com.taxjar.model.transactions.RefundResponse;
 import com.taxjar.model.transactions.RefundsResponse;
+import com.taxjar.model.validations.AddressResponse;
 import com.taxjar.model.validations.ValidationResponse;
 import com.taxjar.net.Endpoints;
 import com.taxjar.net.Listener;
@@ -1107,6 +1108,48 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RegionResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public AddressResponse validateAddress(Map<String, Object> params) throws TaxjarException {
+        Call<AddressResponse> call = apiService.getAddresses(params);
+
+        try {
+            Response<AddressResponse> response = call.execute();
+            if (response.isSuccessful()) {
+                return response.body();
+            } else {
+                throw new TaxjarException(response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void validateAddress(Map<String, Object> params, final Listener<AddressResponse> listener) {
+        Call<AddressResponse> call = apiService.getAddresses(params);
+
+        call.enqueue(new Callback<AddressResponse>() {
+            @Override
+            public void onResponse(Call<AddressResponse> call, Response<AddressResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    try {
+                        TaxjarException exception = new TaxjarException(response.errorBody().string());
+                        listener.onError(exception);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddressResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });

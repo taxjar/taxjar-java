@@ -11,6 +11,7 @@ import com.taxjar.model.transactions.OrderResponse;
 import com.taxjar.model.transactions.OrdersResponse;
 import com.taxjar.model.transactions.RefundResponse;
 import com.taxjar.model.transactions.RefundsResponse;
+import com.taxjar.model.validations.AddressResponse;
 import com.taxjar.model.validations.ValidationResponse;
 
 import retrofit2.Call;
@@ -88,6 +89,9 @@ public interface Endpoints
 
     @GET("nexus/regions")
     Call<RegionResponse> getRegions();
+
+    @POST("addresses/validate")
+    Call<AddressResponse> getAddresses(@Body Map<String, Object> params);
 
     @GET("validation")
     Call<ValidationResponse> getValidation(@QueryMap Map<String, String> params);
