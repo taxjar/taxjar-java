@@ -31,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Taxjar {
     public static final String DEFAULT_API_URL = "https://api.taxjar.com";
@@ -40,6 +41,7 @@ public class Taxjar {
     protected static Endpoints apiService;
     protected static String apiUrl;
     protected static String apiToken;
+    protected static long timeout = 30000;
 
     public Taxjar(final String apiToken) {
         this.apiToken = apiToken;
@@ -47,19 +49,21 @@ public class Taxjar {
         buildClient(null);
     }
 
-    public Taxjar(final String apiToken, Map<String, String> params) {
+    public Taxjar(final String apiToken, Map<String, Object> params) {
         this.apiToken = apiToken;
         this.apiUrl = DEFAULT_API_URL;
         buildClient(params);
     }
 
-    public void buildClient(Map<String, String> params) {
+    public void buildClient(Map<String, Object> params) {
         final String apiToken = this.apiToken;
 
         if (params != null) {
-            for (Map.Entry<String, String> param : params.entrySet()) {
-                if (param.getKey() == "apiUrl") {
-                    this.apiUrl = param.getValue();
+            for (Map.Entry<String, Object> param : params.entrySet()) {
+                try {
+                    getClass().getDeclaredField(param.getKey()).set(this, param.getValue());
+                } catch (NoSuchFieldException | IllegalAccessException ex) {
+                    // No-op
                 }
             }
         }
@@ -73,7 +77,11 @@ public class Taxjar {
                         .build();
                 return chain.proceed(newRequest);
             }
-        }).build();
+        })
+                .connectTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .writeTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .readTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .build();
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -96,7 +104,7 @@ public class Taxjar {
         }
     }
 
-    public void setApiConfig(String key, String value) {
+    public void setApiConfig(String key, Object value) {
         try {
             getClass().getDeclaredField(key).set(this, value);
             buildClient(null);
