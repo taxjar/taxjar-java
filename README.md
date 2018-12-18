@@ -743,6 +743,36 @@ public class SummarizedRatesExample {
 }
 ```
 
+## Custom Options
+
+You can pass additional options using `setApiConfig` or when instantiating the client for the following:
+
+### Timeouts
+
+The default timeout is 30 seconds (specified in milliseconds).
+
+```java
+import com.taxjar.Taxjar;
+import com.taxjar.exception.TaxjarException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CustomTimeoutExample {
+
+    public static void main(String[] args) {
+        // Custom timeout when instantiating the client
+        Map<String, Object> params = new HashMap<>();
+        params.put("timeout", 30 * 1000);
+
+        Taxjar client = new Taxjar("YOUR API TOKEN", params);
+
+        // Custom timeout via `setApiConfig`
+        client.setApiConfig("timeout", 30 * 1000);
+    }
+
+}
+```
+
 ## Sandbox Environment
 
 You can easily configure the client to use the [TaxJar Sandbox](https://developers.taxjar.com/api/reference/#sandbox-environment):
@@ -756,7 +786,7 @@ import java.util.Map;
 public class SandboxExample {
 
     public static void main(String[] args) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         params.put("apiUrl", Taxjar.SANDBOX_API_URL);
 
         Taxjar client = new Taxjar("YOUR SANDBOX API TOKEN", params);
