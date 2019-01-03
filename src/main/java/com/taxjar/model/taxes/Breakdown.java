@@ -44,7 +44,7 @@ public class Breakdown {
     @SerializedName("special_district_taxable_amount")
     Float specialDistrictTaxableAmount;
 
-    @SerializedName("special_district_tax_rate")
+    @SerializedName("special_tax_rate")
     Float specialDistrictTaxRate;
 
     @SerializedName("special_district_tax_collectable")

@@ -18,7 +18,7 @@ public class BreakdownLineItem {
     @SerializedName("state_taxable_amount")
     Float stateTaxableAmount;
 
-    @SerializedName("state_tax_rate")
+    @SerializedName("state_sales_tax_rate")
     Float stateTaxRate;
 
     @SerializedName("state_amount")
@@ -45,7 +45,7 @@ public class BreakdownLineItem {
     @SerializedName("special_district_taxable_amount")
     Float specialDistrictTaxableAmount;
 
-    @SerializedName("special_district_tax_rate")
+    @SerializedName("special_tax_rate")
     Float specialDistrictTaxRate;
 
     @SerializedName("special_district_amount")

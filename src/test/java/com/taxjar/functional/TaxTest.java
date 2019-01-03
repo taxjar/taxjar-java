@@ -69,12 +69,48 @@ public class TaxTest extends TestCase {
         assertEquals(16.5f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(1.16f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.07f, res.tax.getBreakdown().getCombinedTaxRate());
+        assertEquals(16.5f, res.tax.getBreakdown().getStateTaxableAmount());
+        assertEquals(0.07f, res.tax.getBreakdown().getStateTaxRate());
+        assertEquals(1.16f, res.tax.getBreakdown().getStateTaxCollectable());
+        assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxCollectable());
+        assertEquals(0.0f, res.tax.getBreakdown().getCityTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getCityTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getCityTaxCollectable());
+        assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxCollectable());
         assertEquals(1.5f, res.tax.getBreakdown().getShipping().getTaxableAmount());
         assertEquals(0.11f, res.tax.getBreakdown().getShipping().getTaxCollectable());
         assertEquals(0.07f, res.tax.getBreakdown().getShipping().getCombinedTaxRate());
+        assertEquals(1.5f, res.tax.getBreakdown().getShipping().getStateTaxableAmount());
+        assertEquals(0.07f, res.tax.getBreakdown().getShipping().getStateTaxRate());
+        assertEquals(0.11f, res.tax.getBreakdown().getShipping().getStateAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictAmount());
         assertEquals(15f, res.tax.getBreakdown().getLineItems().get(0).getTaxableAmount());
         assertEquals(1.05f, res.tax.getBreakdown().getLineItems().get(0).getTaxCollectable());
         assertEquals(0.07f, res.tax.getBreakdown().getLineItems().get(0).getCombinedTaxRate());
+        assertEquals(15f, res.tax.getBreakdown().getLineItems().get(0).getStateTaxableAmount());
+        assertEquals(0.07f, res.tax.getBreakdown().getLineItems().get(0).getStateTaxRate());
+        assertEquals(1.05f, res.tax.getBreakdown().getLineItems().get(0).getStateAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictAmount());
     }
 
     public void testTaxForOrderAsync() throws TaxjarException {
@@ -135,12 +171,48 @@ public class TaxTest extends TestCase {
                 assertEquals(16.5f, res.tax.getBreakdown().getTaxableAmount());
                 assertEquals(1.16f, res.tax.getBreakdown().getTaxCollectable());
                 assertEquals(0.07f, res.tax.getBreakdown().getCombinedTaxRate());
+                assertEquals(16.5f, res.tax.getBreakdown().getStateTaxableAmount());
+                assertEquals(0.07f, res.tax.getBreakdown().getStateTaxRate());
+                assertEquals(1.16f, res.tax.getBreakdown().getStateTaxCollectable());
+                assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getCountyTaxCollectable());
+                assertEquals(0.0f, res.tax.getBreakdown().getCityTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getCityTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getCityTaxCollectable());
+                assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getSpecialDistrictTaxCollectable());
                 assertEquals(1.5f, res.tax.getBreakdown().getShipping().getTaxableAmount());
                 assertEquals(0.11f, res.tax.getBreakdown().getShipping().getTaxCollectable());
                 assertEquals(0.07f, res.tax.getBreakdown().getShipping().getCombinedTaxRate());
+                assertEquals(1.5f, res.tax.getBreakdown().getShipping().getStateTaxableAmount());
+                assertEquals(0.07f, res.tax.getBreakdown().getShipping().getStateTaxRate());
+                assertEquals(0.11f, res.tax.getBreakdown().getShipping().getStateAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCountyAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getCityAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getShipping().getSpecialDistrictAmount());
                 assertEquals(15f, res.tax.getBreakdown().getLineItems().get(0).getTaxableAmount());
                 assertEquals(1.05f, res.tax.getBreakdown().getLineItems().get(0).getTaxCollectable());
                 assertEquals(0.07f, res.tax.getBreakdown().getLineItems().get(0).getCombinedTaxRate());
+                assertEquals(15f, res.tax.getBreakdown().getLineItems().get(0).getStateTaxableAmount());
+                assertEquals(0.07f, res.tax.getBreakdown().getLineItems().get(0).getStateTaxRate());
+                assertEquals(1.05f, res.tax.getBreakdown().getLineItems().get(0).getStateAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCountyAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getCityAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictTaxableAmount());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictTaxRate());
+                assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getSpecialDistrictAmount());
             }
 
             @Override
@@ -202,12 +274,39 @@ public class TaxTest extends TestCase {
         assertEquals(26.95f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(3.5f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.13f, res.tax.getBreakdown().getCombinedTaxRate());
+        assertEquals(26.95f, res.tax.getBreakdown().getGstTaxableAmount());
+        assertEquals(0.05f, res.tax.getBreakdown().getGstTaxRate());
+        assertEquals(1.35f, res.tax.getBreakdown().getGst());
+        assertEquals(26.95f, res.tax.getBreakdown().getPstTaxableAmount());
+        assertEquals(0.08f, res.tax.getBreakdown().getPstTaxRate());
+        assertEquals(2.16f, res.tax.getBreakdown().getPst());
+        assertEquals(0.0f, res.tax.getBreakdown().getQstTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getQstTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getQst());
         assertEquals(10f, res.tax.getBreakdown().getShipping().getTaxableAmount());
         assertEquals(1.3f, res.tax.getBreakdown().getShipping().getTaxCollectable());
         assertEquals(0.13f, res.tax.getBreakdown().getShipping().getCombinedTaxRate());
+        assertEquals(10f, res.tax.getBreakdown().getShipping().getGstTaxableAmount());
+        assertEquals(0.05f, res.tax.getBreakdown().getShipping().getGstTaxRate());
+        assertEquals(0.5f, res.tax.getBreakdown().getShipping().getGst());
+        assertEquals(10f, res.tax.getBreakdown().getShipping().getPstTaxableAmount());
+        assertEquals(0.08f, res.tax.getBreakdown().getShipping().getPstTaxRate());
+        assertEquals(0.8f, res.tax.getBreakdown().getShipping().getPst());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getQstTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getQstTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getShipping().getQst());
         assertEquals(16.95f, res.tax.getBreakdown().getLineItems().get(0).getTaxableAmount());
         assertEquals(2.2f, res.tax.getBreakdown().getLineItems().get(0).getTaxCollectable());
         assertEquals(0.13f, res.tax.getBreakdown().getLineItems().get(0).getCombinedTaxRate());
+        assertEquals(16.95f, res.tax.getBreakdown().getLineItems().get(0).getGstTaxableAmount());
+        assertEquals(0.05f, res.tax.getBreakdown().getLineItems().get(0).getGstTaxRate());
+        assertEquals(0.85f, res.tax.getBreakdown().getLineItems().get(0).getGst());
+        assertEquals(16.95f, res.tax.getBreakdown().getLineItems().get(0).getPstTaxableAmount());
+        assertEquals(0.08f, res.tax.getBreakdown().getLineItems().get(0).getPstTaxRate());
+        assertEquals(1.36f, res.tax.getBreakdown().getLineItems().get(0).getPst());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getQstTaxableAmount());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getQstTaxRate());
+        assertEquals(0.0f, res.tax.getBreakdown().getLineItems().get(0).getQst());
     }
 
     public void testTaxForOrderEU() throws TaxjarException {
@@ -244,11 +343,20 @@ public class TaxTest extends TestCase {
         assertEquals(26.95f, res.tax.getBreakdown().getTaxableAmount());
         assertEquals(6.47f, res.tax.getBreakdown().getTaxCollectable());
         assertEquals(0.24f, res.tax.getBreakdown().getCombinedTaxRate());
+        assertEquals(26.95f, res.tax.getBreakdown().getCountryTaxableAmount());
+        assertEquals(0.24f, res.tax.getBreakdown().getCountryTaxRate());
+        assertEquals(6.47f, res.tax.getBreakdown().getCountryTaxCollectable());
         assertEquals(10f, res.tax.getBreakdown().getShipping().getTaxableAmount());
         assertEquals(2.4f, res.tax.getBreakdown().getShipping().getTaxCollectable());
         assertEquals(0.24f, res.tax.getBreakdown().getShipping().getCombinedTaxRate());
+        assertEquals(10f, res.tax.getBreakdown().getShipping().getCountryTaxableAmount());
+        assertEquals(0.24f, res.tax.getBreakdown().getShipping().getCountryTaxRate());
+        assertEquals(2.4f, res.tax.getBreakdown().getShipping().getCountryTaxCollectable());
         assertEquals(16.95f, res.tax.getBreakdown().getLineItems().get(0).getTaxableAmount());
         assertEquals(4.07f, res.tax.getBreakdown().getLineItems().get(0).getTaxCollectable());
         assertEquals(0.24f, res.tax.getBreakdown().getLineItems().get(0).getCombinedTaxRate());
+        assertEquals(16.95f, res.tax.getBreakdown().getLineItems().get(0).getCountryTaxableAmount());
+        assertEquals(0.24f, res.tax.getBreakdown().getLineItems().get(0).getCountryTaxRate());
+        assertEquals(4.07f, res.tax.getBreakdown().getLineItems().get(0).getCountryTaxCollectable());
     }
 }

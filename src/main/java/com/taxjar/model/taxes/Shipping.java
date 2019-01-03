@@ -15,7 +15,7 @@ public class Shipping {
     @SerializedName("state_taxable_amount")
     Float stateTaxableAmount;
 
-    @SerializedName("state_tax_rate")
+    @SerializedName("state_sales_tax_rate")
     Float stateTaxRate;
 
     @SerializedName("state_amount")
@@ -39,10 +39,10 @@ public class Shipping {
     @SerializedName("city_amount")
     Float cityAmount;
 
-    @SerializedName("special_district_taxable_amount")
+    @SerializedName("special_taxable_amount")
     Float specialDistrictTaxableAmount;
 
-    @SerializedName("special_district_tax_rate")
+    @SerializedName("special_tax_rate")
     Float specialDistrictTaxRate;
 
     @SerializedName("special_district_amount")
