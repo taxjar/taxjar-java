@@ -712,7 +712,7 @@ public class ValidateExample {
             Map<String, String> params = new HashMap<>();
             params.put("vat", "FR40303265045");
 
-            ValidationResponse res = client.validate(params);
+            ValidationResponse res = client.validateVat(params);
         } catch (TaxjarException e) {
             e.printStackTrace();
         }
