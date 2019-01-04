@@ -31,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Taxjar {
     public static final String DEFAULT_API_URL = "https://api.taxjar.com";
@@ -40,6 +41,7 @@ public class Taxjar {
     protected static Endpoints apiService;
     protected static String apiUrl;
     protected static String apiToken;
+    protected static long timeout = 30000;
 
     public Taxjar(final String apiToken) {
         this.apiToken = apiToken;
@@ -47,19 +49,21 @@ public class Taxjar {
         buildClient(null);
     }
 
-    public Taxjar(final String apiToken, Map<String, String> params) {
+    public Taxjar(final String apiToken, Map<String, Object> params) {
         this.apiToken = apiToken;
         this.apiUrl = DEFAULT_API_URL;
         buildClient(params);
     }
 
-    public void buildClient(Map<String, String> params) {
+    public void buildClient(Map<String, Object> params) {
         final String apiToken = this.apiToken;
 
         if (params != null) {
-            for (Map.Entry<String, String> param : params.entrySet()) {
-                if (param.getKey() == "apiUrl") {
-                    this.apiUrl = param.getValue();
+            for (Map.Entry<String, Object> param : params.entrySet()) {
+                try {
+                    getClass().getDeclaredField(param.getKey()).set(this, param.getValue());
+                } catch (NoSuchFieldException | IllegalAccessException ex) {
+                    // No-op
                 }
             }
         }
@@ -73,7 +77,11 @@ public class Taxjar {
                         .build();
                 return chain.proceed(newRequest);
             }
-        }).build();
+        })
+                .connectTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .writeTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .readTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .build();
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -96,7 +104,7 @@ public class Taxjar {
         }
     }
 
-    public void setApiConfig(String key, String value) {
+    public void setApiConfig(String key, Object value) {
         try {
             getClass().getDeclaredField(key).set(this, value);
             buildClient(null);
@@ -116,10 +124,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void categories(final Listener<CategoryResponse> listener) {
@@ -132,8 +138,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -142,7 +147,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                t.printStackTrace();
+                listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -158,10 +163,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public RateResponse ratesForLocation(String zip, Map<String, String> params) throws TaxjarException {
@@ -175,10 +178,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void ratesForLocation(String zip, final Listener<RateResponse> listener) throws TaxjarException {
@@ -191,8 +192,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -201,7 +201,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RateResponse> call, Throwable t) {
-                t.printStackTrace();
+                listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -216,8 +216,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -226,7 +225,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RateResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -242,10 +241,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void taxForOrder(Map<String, Object> params, final Listener<TaxResponse> listener) {
@@ -258,8 +255,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -268,7 +264,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<TaxResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -284,10 +280,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public OrdersResponse listOrders(Map<String, String> params) throws TaxjarException {
@@ -301,10 +295,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void listOrders(final Listener<OrdersResponse> listener) {
@@ -317,8 +309,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -327,7 +318,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrdersResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -342,8 +333,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -352,7 +342,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrdersResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -368,10 +358,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void showOrder(String transactionId, final Listener<OrderResponse> listener) {
@@ -384,8 +372,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -394,7 +381,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -410,10 +397,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void createOrder(Map<String, Object> params, final Listener<OrderResponse> listener) {
@@ -426,8 +411,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -436,7 +420,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -452,10 +436,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void updateOrder(String transactionId, Map<String, Object> params, final Listener<OrderResponse> listener) {
@@ -468,8 +450,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -478,7 +459,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -494,10 +475,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void deleteOrder(String transactionId, final Listener<OrderResponse> listener) {
@@ -510,8 +489,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -520,7 +498,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -536,10 +514,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public RefundsResponse listRefunds(Map<String, String> params) throws TaxjarException {
@@ -553,10 +529,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void listRefunds(final Listener<RefundsResponse> listener) {
@@ -569,8 +543,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -579,7 +552,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundsResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -594,8 +567,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -604,7 +576,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundsResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -620,10 +592,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void showRefund(String transactionId, final Listener<RefundResponse> listener) {
@@ -636,8 +606,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -646,7 +615,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -662,10 +631,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void createRefund(Map<String, Object> params, final Listener<RefundResponse> listener) {
@@ -678,8 +645,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -688,7 +654,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -704,10 +670,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void createRefund(String transactionId, Map<String, Object> params, final Listener<RefundResponse> listener) {
@@ -720,8 +684,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -730,7 +693,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -746,10 +709,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void updateRefund(String transactionId, Map<String, Object> params, final Listener<RefundResponse> listener) {
@@ -762,8 +723,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -772,7 +732,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -788,10 +748,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void deleteRefund(String transactionId, final Listener<RefundResponse> listener) {
@@ -804,8 +762,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -814,7 +771,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -830,10 +787,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public CustomersResponse listCustomers(Map<String, String> params) throws TaxjarException {
@@ -847,10 +802,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void listCustomers(final Listener<CustomersResponse> listener) {
@@ -863,8 +816,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -873,7 +825,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomersResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -888,8 +840,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -898,7 +849,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomersResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -914,10 +865,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void showCustomer(String customerId, final Listener<CustomerResponse> listener) {
@@ -930,8 +879,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -940,7 +888,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -956,10 +904,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void createCustomer(Map<String, Object> params, final Listener<CustomerResponse> listener) {
@@ -972,8 +918,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -982,7 +927,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -998,10 +943,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void updateCustomer(String customerId, Map<String, Object> params, final Listener<CustomerResponse> listener) {
@@ -1014,8 +957,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1024,7 +966,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1040,10 +982,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void deleteCustomer(String customerId, final Listener<CustomerResponse> listener) {
@@ -1056,8 +996,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1066,7 +1005,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1082,10 +1021,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void nexusRegions(final Listener<RegionResponse> listener) {
@@ -1098,8 +1035,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1108,7 +1044,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RegionResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1124,10 +1060,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void validateAddress(Map<String, Object> params, final Listener<AddressResponse> listener) {
@@ -1140,8 +1074,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1150,7 +1083,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<AddressResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1166,10 +1099,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void validate(Map<String, String> params, final Listener<ValidationResponse> listener) {
@@ -1182,8 +1113,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1192,7 +1122,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<ValidationResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1208,10 +1138,8 @@ public class Taxjar {
                 throw new TaxjarException(response.errorBody().string());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TaxjarException(e.getMessage(), e);
         }
-
-        return null;
     }
 
     public void summaryRates(final Listener<SummaryRateResponse> listener) {
@@ -1224,8 +1152,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1234,7 +1161,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<SummaryRateResponse> call, Throwable t) {
-                t.printStackTrace();
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }

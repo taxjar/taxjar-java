@@ -14,11 +14,13 @@ public class ConfigTest extends TestCase {
     }
 
     public void testClientParams() {
-        Map<String, String> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         params.put("apiUrl", Taxjar.SANDBOX_API_URL);
+        params.put("timeout", 60 * 1000);
 
         client = new Taxjar("TEST", params);
         assertEquals(client.getApiConfig("apiUrl"), Taxjar.SANDBOX_API_URL);
+        assertEquals(client.getApiConfig("timeout"), "60000");
     }
 
     public void testGetApiConfig() {
@@ -32,5 +34,8 @@ public class ConfigTest extends TestCase {
 
         client.setApiConfig("apiToken", "foobar");
         assertEquals(client.getApiConfig("apiToken"), "foobar");
+
+        client.setApiConfig("timeout", 60 * 1000);
+        assertEquals(client.getApiConfig("timeout"), "60000");
     }
 }

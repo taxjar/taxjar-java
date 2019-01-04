@@ -56,8 +56,12 @@ public class MockInterceptor implements Interceptor {
         ByteArrayOutputStream os = new ByteArrayOutputStream(1024);
         byte[] buf = new byte [1024];
 
-        for( int i = resource.read(buf); i > 0; i = resource.read(buf)) {
-            os.write(buf,0,i);
+        try {
+            for (int i = resource.read(buf); i > 0; i = resource.read(buf)) {
+                os.write(buf, 0, i);
+            }
+        } catch (RuntimeException e) {
+            // No-op
         }
 
         return os.toString("utf8");
