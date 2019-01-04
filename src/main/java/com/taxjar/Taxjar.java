@@ -192,8 +192,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -217,8 +216,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -257,8 +255,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -312,8 +309,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -337,8 +333,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -377,8 +372,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -417,8 +411,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -457,8 +450,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -497,8 +489,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -552,8 +543,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -577,8 +567,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -617,8 +606,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -657,8 +645,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -697,8 +684,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -737,8 +723,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -777,8 +762,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -832,8 +816,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -857,8 +840,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -897,8 +879,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -937,8 +918,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -977,8 +957,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1017,8 +996,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1057,8 +1035,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1097,8 +1074,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1137,8 +1113,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1177,8 +1152,7 @@ public class Taxjar {
                     listener.onSuccess(response.body());
                 } else {
                     try {
-                        TaxjarException exception = new TaxjarException(response.errorBody().string());
-                        listener.onError(exception);
+                        listener.onError(new TaxjarException(response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
