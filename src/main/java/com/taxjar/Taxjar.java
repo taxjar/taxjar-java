@@ -1088,7 +1088,7 @@ public class Taxjar {
         });
     }
 
-    public ValidationResponse validate(Map<String, String> params) throws TaxjarException {
+    public ValidationResponse validateVat(Map<String, String> params) throws TaxjarException {
         Call<ValidationResponse> call = apiService.getValidation(params);
 
         try {
@@ -1103,7 +1103,7 @@ public class Taxjar {
         }
     }
 
-    public void validate(Map<String, String> params, final Listener<ValidationResponse> listener) {
+    public void validateVat(Map<String, String> params, final Listener<ValidationResponse> listener) {
         Call<ValidationResponse> call = apiService.getValidation(params);
 
         call.enqueue(new Callback<ValidationResponse>() {
