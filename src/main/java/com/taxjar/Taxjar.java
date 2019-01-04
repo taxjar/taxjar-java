@@ -147,7 +147,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                listener.onError(new TaxjarException(t.getMessage()));
+                listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -201,7 +201,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RateResponse> call, Throwable t) {
-                listener.onError(new TaxjarException(t.getMessage()));
+                listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -225,7 +225,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RateResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -264,7 +264,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<TaxResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -318,7 +318,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrdersResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -342,7 +342,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrdersResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -381,7 +381,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -420,7 +420,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -459,7 +459,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -498,7 +498,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -552,7 +552,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundsResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -576,7 +576,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundsResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -615,7 +615,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -654,7 +654,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -693,7 +693,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -732,7 +732,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -771,7 +771,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RefundResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -825,7 +825,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomersResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -849,7 +849,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomersResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -888,7 +888,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -927,7 +927,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -966,7 +966,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1005,7 +1005,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<CustomerResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1044,7 +1044,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<RegionResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1083,7 +1083,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<AddressResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1122,7 +1122,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<ValidationResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
@@ -1161,7 +1161,7 @@ public class Taxjar {
 
             @Override
             public void onFailure(Call<SummaryRateResponse> call, Throwable t) {
-               listener.onError(new TaxjarException(t.getMessage()));
+               listener.onError(new TaxjarException(t.getMessage(), t));
             }
         });
     }
