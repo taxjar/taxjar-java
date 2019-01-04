@@ -122,7 +122,7 @@ public class ValidationTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("vat", "FR40303265045");
 
-        ValidationResponse res = client.validate(params);
+        ValidationResponse res = client.validateVat(params);
 
         assertEquals((Boolean) true, res.validation.getValid());
         assertEquals((Boolean) true, res.validation.getExists());
@@ -141,7 +141,7 @@ public class ValidationTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("vat", "FR40303265045");
 
-        client.validate(params, new Listener<ValidationResponse>() {
+        client.validateVat(params, new Listener<ValidationResponse>() {
             @Override
             public void onSuccess(ValidationResponse res)
             {
