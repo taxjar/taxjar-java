@@ -15,33 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class TaxjarMock extends Taxjar {
     public TaxjarMock(final String apiToken, Interceptor interceptor) {
-        super(apiToken);
-
-        final OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + apiToken)
-                        .build();
-                return chain.proceed(newRequest);
-            }
-        }).addInterceptor(interceptor)
-                .connectTimeout(timeout, TimeUnit.MILLISECONDS)
-                .writeTimeout(timeout, TimeUnit.MILLISECONDS)
-                .readTimeout(timeout, TimeUnit.MILLISECONDS)
-                .build();
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DEFAULT_API_URL + "/" + API_VERSION + "/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(client)
-                .build();
-
-        apiService = retrofit.create(Endpoints.class);
+        this(apiToken, null, interceptor);
     }
 
     public TaxjarMock(final String apiToken, Map<String, Object> params, Interceptor interceptor) {

@@ -77,6 +77,7 @@ public class ExceptionTest extends TestCase {
             e = ex;
         }
 
+        assertTrue(e instanceof ApiConnectionException);
         assertTrue(e instanceof TaxjarException);
         assertEquals("timeout", e.getMessage());
 
@@ -104,6 +105,7 @@ public class ExceptionTest extends TestCase {
             @Override
             public void onError(TaxjarException e)
             {
+                assertTrue(e instanceof ApiConnectionException);
                 assertTrue(e instanceof TaxjarException);
                 assertEquals("timeout", e.getMessage());
             }
