@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class ConfigTest extends TestCase {
     private Taxjar client;
+    private Taxjar client2;
 
     protected void setUp() {
         client = new Taxjar("TEST");
@@ -21,6 +22,10 @@ public class ConfigTest extends TestCase {
         client = new Taxjar("TEST", params);
         assertEquals(client.getApiConfig("apiUrl"), Taxjar.SANDBOX_API_URL);
         assertEquals(client.getApiConfig("timeout"), "60000");
+
+        client2 = new Taxjar("TEST2");
+        assertEquals(client.getApiConfig("apiToken"), "TEST");
+        assertEquals(client2.getApiConfig("apiToken"), "TEST2");
     }
 
     public void testGetApiConfig() {
