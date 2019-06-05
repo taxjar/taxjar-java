@@ -176,8 +176,18 @@ public class Taxjar {
         return new ApiRequest<>(call).execute();
     }
 
+    public OrderResponse showOrder(String transactionId, Map<String, String> params) throws TaxjarException {
+        Call<OrderResponse> call = apiService.getOrder(transactionId, params);
+        return new ApiRequest<>(call).execute();
+    }
+
     public void showOrder(String transactionId, final Listener<OrderResponse> listener) {
         Call<OrderResponse> call = apiService.getOrder(transactionId);
+        call.enqueue(new ApiCallback<>(listener));
+    }
+
+    public void showOrder(String transactionId, Map<String, String> params, final Listener<OrderResponse> listener) {
+        Call<OrderResponse> call = apiService.getOrder(transactionId, params);
         call.enqueue(new ApiCallback<>(listener));
     }
 
@@ -206,8 +216,18 @@ public class Taxjar {
         return new ApiRequest<>(call).execute();
     }
 
+    public OrderResponse deleteOrder(String transactionId, Map<String, String> params) throws TaxjarException {
+        Call<OrderResponse> call = apiService.deleteOrder(transactionId, params);
+        return new ApiRequest<>(call).execute();
+    }
+
     public void deleteOrder(String transactionId, final Listener<OrderResponse> listener) {
         Call<OrderResponse> call = apiService.deleteOrder(transactionId);
+        call.enqueue(new ApiCallback<>(listener));
+    }
+
+    public void deleteOrder(String transactionId, Map<String, String> params, final Listener<OrderResponse> listener) {
+        Call<OrderResponse> call = apiService.deleteOrder(transactionId, params);
         call.enqueue(new ApiCallback<>(listener));
     }
 
@@ -236,8 +256,18 @@ public class Taxjar {
         return new ApiRequest<>(call).execute();
     }
 
+    public RefundResponse showRefund(String transactionId, Map<String, String> params) throws TaxjarException {
+        Call<RefundResponse> call = apiService.getRefund(transactionId, params);
+        return new ApiRequest<>(call).execute();
+    }
+
     public void showRefund(String transactionId, final Listener<RefundResponse> listener) {
         Call<RefundResponse> call = apiService.getRefund(transactionId);
+        call.enqueue(new ApiCallback<>(listener));
+    }
+
+    public void showRefund(String transactionId, Map<String, String> params, final Listener<RefundResponse> listener) {
+        Call<RefundResponse> call = apiService.getRefund(transactionId, params);
         call.enqueue(new ApiCallback<>(listener));
     }
 
@@ -276,8 +306,18 @@ public class Taxjar {
         return new ApiRequest<>(call).execute();
     }
 
+    public RefundResponse deleteRefund(String transactionId, Map<String, String> params) throws TaxjarException {
+        Call<RefundResponse> call = apiService.deleteRefund(transactionId, params);
+        return new ApiRequest<>(call).execute();
+    }
+
     public void deleteRefund(String transactionId, final Listener<RefundResponse> listener) {
         Call<RefundResponse> call = apiService.deleteRefund(transactionId);
+        call.enqueue(new ApiCallback<>(listener));
+    }
+
+    public void deleteRefund(String transactionId, Map<String, String> params, final Listener<RefundResponse> listener) {
+        Call<RefundResponse> call = apiService.deleteRefund(transactionId, params);
         call.enqueue(new ApiCallback<>(listener));
     }
 
