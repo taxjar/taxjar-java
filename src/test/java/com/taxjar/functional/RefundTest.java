@@ -29,6 +29,7 @@ public class RefundTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("from_transaction_date", "2015/05/01");
         params.put("to_transaction_date", "2015/05/31");
+        params.put("provider", "api");
 
         RefundsResponse res = client.listRefunds(params);
         assertEquals("321", res.refunds.get(0));
@@ -61,6 +62,7 @@ public class RefundTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("from_transaction_date", "2015/05/01");
         params.put("to_transaction_date", "2015/05/31");
+        params.put("provider", "api");
 
         client.listRefunds(params, new Listener<RefundsResponse>() {
             @Override
@@ -85,6 +87,38 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
+        assertEquals("api", res.refund.getProvider());
+        assertEquals("123", res.refund.getTransactionReferenceId());
+        assertEquals("US", res.refund.getToCountry());
+        assertEquals("90002", res.refund.getToZip());
+        assertEquals("CA", res.refund.getToState());
+        assertEquals("LOS ANGELES", res.refund.getToCity());
+        assertEquals("123 Palm Grove Ln", res.refund.getToStreet());
+        assertEquals(17f, res.refund.getAmount());
+        assertEquals(2f, res.refund.getShipping());
+        assertEquals(0.95f, res.refund.getSalesTax());
+        assertEquals("1", res.refund.getLineItems().get(0).getId());
+        assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
+        assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
+        assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
+        assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
+        assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
+        assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
+    }
+
+    public void testShowRefundWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("refunds/show.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        RefundResponse res = client.showRefund("321", params);
+        assertEquals("321", res.refund.getTransactionId());
+        assertEquals((Integer) 10649, res.refund.getUserId());
+        assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
+        assertEquals("api", res.refund.getProvider());
         assertEquals("123", res.refund.getTransactionReferenceId());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
@@ -116,6 +150,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
+                assertEquals("api", res.refund.getProvider());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -141,6 +176,45 @@ public class RefundTest extends TestCase {
         });
     }
 
+    public void testShowRefundAsyncWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("refunds/show.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        client.showRefund("321", params, new Listener<RefundResponse>() {
+            @Override
+            public void onSuccess(RefundResponse res) {
+                assertEquals("321", res.refund.getTransactionId());
+                assertEquals((Integer) 10649, res.refund.getUserId());
+                assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
+                assertEquals("123", res.refund.getTransactionReferenceId());
+                assertEquals("api", res.refund.getProvider());
+                assertEquals("US", res.refund.getToCountry());
+                assertEquals("90002", res.refund.getToZip());
+                assertEquals("CA", res.refund.getToState());
+                assertEquals("LOS ANGELES", res.refund.getToCity());
+                assertEquals("123 Palm Grove Ln", res.refund.getToStreet());
+                assertEquals(17f, res.refund.getAmount());
+                assertEquals(2f, res.refund.getShipping());
+                assertEquals(0.95f, res.refund.getSalesTax());
+                assertEquals("1", res.refund.getLineItems().get(0).getId());
+                assertEquals((Integer) 1, res.refund.getLineItems().get(0).getQuantity());
+                assertEquals("12-34243-0", res.refund.getLineItems().get(0).getProductIdentifier());
+                assertEquals("Heavy Widget", res.refund.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.refund.getLineItems().get(0).getProductTaxCode());
+                assertEquals(15f, res.refund.getLineItems().get(0).getUnitPrice());
+                assertEquals(0f, res.refund.getLineItems().get(0).getDiscount());
+                assertEquals(0.95f, res.refund.getLineItems().get(0).getSalesTax());
+            }
+
+            @Override
+            public void onError(TaxjarException error) {
+            }
+        });
+    }
+
     public void testCreateRefund() throws TaxjarException {
         MockInterceptor interceptor = new MockInterceptor("refunds/show.json");
         client = new TaxjarMock("TEST", interceptor);
@@ -148,6 +222,7 @@ public class RefundTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
+        params.put("provider", "api");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -171,6 +246,7 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
+        assertEquals("api", res.refund.getProvider());
         assertEquals("123", res.refund.getTransactionReferenceId());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
@@ -197,6 +273,7 @@ public class RefundTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
+        params.put("provider", "api");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -224,6 +301,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
+                assertEquals("api", res.refund.getProvider());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -280,6 +358,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
         assertEquals("123", res.refund.getTransactionReferenceId());
+        assertEquals("api", res.refund.getProvider());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
         assertEquals("CA", res.refund.getToState());
@@ -332,6 +411,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
+                assertEquals("api", res.refund.getProvider());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -365,6 +445,7 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals(null, res.refund.getTransactionDate());
+        assertEquals("api", res.refund.getProvider());
         assertEquals(null, res.refund.getToCountry());
         assertEquals(null, res.refund.getToZip());
         assertEquals(null, res.refund.getToState());
@@ -376,7 +457,30 @@ public class RefundTest extends TestCase {
         assertEquals(Collections.emptyList(), res.refund.getLineItems());
     }
 
-    public void testDeleteOrderAsync() throws TaxjarException {
+    public void testDeleteRefundWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("refunds/delete.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        RefundResponse res = client.deleteRefund("321", params);
+        assertEquals("321", res.refund.getTransactionId());
+        assertEquals((Integer) 10649, res.refund.getUserId());
+        assertEquals(null, res.refund.getTransactionDate());
+        assertEquals("api", res.refund.getProvider());
+        assertEquals(null, res.refund.getToCountry());
+        assertEquals(null, res.refund.getToZip());
+        assertEquals(null, res.refund.getToState());
+        assertEquals(null, res.refund.getToCity());
+        assertEquals(null, res.refund.getToStreet());
+        assertEquals(null, res.refund.getAmount());
+        assertEquals(null, res.refund.getShipping());
+        assertEquals(null, res.refund.getSalesTax());
+        assertEquals(Collections.emptyList(), res.refund.getLineItems());
+    }
+
+    public void testDeleteRefundAsync() throws TaxjarException {
         MockInterceptor interceptor = new MockInterceptor("refunds/delete.json");
         client = new TaxjarMock("TEST", interceptor);
 
@@ -387,6 +491,7 @@ public class RefundTest extends TestCase {
                 assertEquals("321", res.refund.getTransactionId());
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals(null, res.refund.getTransactionDate());
+                assertEquals("api", res.refund.getProvider());
                 assertEquals(null, res.refund.getToCountry());
                 assertEquals(null, res.refund.getToZip());
                 assertEquals(null, res.refund.getToState());
@@ -401,6 +506,37 @@ public class RefundTest extends TestCase {
             @Override
             public void onError(TaxjarException error)
             {
+            }
+        });
+    }
+
+    public void testDeleteRefundAsyncWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("refunds/delete.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        client.deleteRefund("321", params, new Listener<RefundResponse>() {
+            @Override
+            public void onSuccess(RefundResponse res) {
+                assertEquals("321", res.refund.getTransactionId());
+                assertEquals((Integer) 10649, res.refund.getUserId());
+                assertEquals(null, res.refund.getTransactionDate());
+                assertEquals("api", res.refund.getProvider());
+                assertEquals(null, res.refund.getToCountry());
+                assertEquals(null, res.refund.getToZip());
+                assertEquals(null, res.refund.getToState());
+                assertEquals(null, res.refund.getToCity());
+                assertEquals(null, res.refund.getToStreet());
+                assertEquals(null, res.refund.getAmount());
+                assertEquals(null, res.refund.getShipping());
+                assertEquals(null, res.refund.getSalesTax());
+                assertEquals(Collections.emptyList(), res.refund.getLineItems());
+            }
+
+            @Override
+            public void onError(TaxjarException error) {
             }
         });
     }
