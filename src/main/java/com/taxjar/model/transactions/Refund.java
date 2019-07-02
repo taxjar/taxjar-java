@@ -56,6 +56,9 @@ public class Refund {
     @SerializedName("sales_tax")
     Float salesTax;
 
+    @SerializedName("exemption_type")
+    String exemptionType;
+
     @SerializedName("line_items")
     List<LineItem> lineItems;
 
@@ -125,6 +128,10 @@ public class Refund {
 
     public Float getSalesTax() {
         return salesTax;
+    }
+
+    public String getExemptionType() {
+        return exemptionType;
     }
 
     public List<LineItem> getLineItems() {
