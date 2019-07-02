@@ -85,6 +85,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
         assertEquals("CA", res.order.getToState());
@@ -114,6 +115,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
                 assertEquals("CA", res.order.getToState());
@@ -146,6 +148,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -169,6 +172,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
         assertEquals("CA", res.order.getToState());
@@ -194,6 +198,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -220,6 +225,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
                 assertEquals("CA", res.order.getToState());
@@ -252,6 +258,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -275,6 +282,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
         assertEquals("CA", res.order.getToState());
@@ -300,6 +308,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -326,6 +335,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
                 assertEquals("CA", res.order.getToState());
@@ -359,6 +369,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals(null, res.order.getTransactionDate());
+        assertEquals(null, res.order.getExemptionType());
         assertEquals(null, res.order.getToCountry());
         assertEquals(null, res.order.getToZip());
         assertEquals(null, res.order.getToState());
@@ -381,6 +392,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals(null, res.order.getTransactionDate());
+                assertEquals(null, res.order.getExemptionType());
                 assertEquals(null, res.order.getToCountry());
                 assertEquals(null, res.order.getToZip());
                 assertEquals(null, res.order.getToState());
