@@ -27,6 +27,9 @@ public class Tax {
     @SerializedName("tax_source")
     String taxSource;
 
+    @SerializedName("exemption_type")
+    String exemptionType;
+
     // ---
 
     @SerializedName("jurisdictions")
@@ -67,7 +70,13 @@ public class Tax {
         return taxSource;
     }
 
-    public Jurisdictions getJurisdictions() { return jurisdictions; }
+    public String getExemptionType() {
+        return exemptionType;
+    }
+
+    public Jurisdictions getJurisdictions() {
+        return jurisdictions;
+    }
 
     public Breakdown getBreakdown() {
         return breakdown;
