@@ -38,7 +38,7 @@ public class Taxjar {
     public static final String SANDBOX_API_URL = "https://api.sandbox.taxjar.com";
     public static final String API_VERSION = "v2";
     public static final String VERSION = "3.0.0";
-    protected static Endpoints apiService;
+    protected Endpoints apiService;
     protected String apiUrl;
     protected String apiToken;
     protected long timeout = 30000;
