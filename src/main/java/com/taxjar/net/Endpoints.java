@@ -42,6 +42,9 @@ public interface Endpoints
     @GET("transactions/orders/{transactionId}")
     Call<OrderResponse> getOrder(@Path("transactionId") String transactionId);
 
+    @GET("transactions/orders/{transactionId}")
+    Call<OrderResponse> getOrder(@Path("transactionId") String transactionId, @QueryMap Map<String, String> params);
+
     @POST("transactions/orders")
     Call<OrderResponse> createOrder(@Body Map<String, Object> params);
 
@@ -50,6 +53,9 @@ public interface Endpoints
 
     @DELETE("transactions/orders/{transactionId}")
     Call<OrderResponse> deleteOrder(@Path("transactionId") String transactionId);
+
+    @DELETE("transactions/orders/{transactionId}")
+    Call<OrderResponse> deleteOrder(@Path("transactionId") String transactionId, @QueryMap Map<String, String> params);
 
     @GET("transactions/refunds")
     Call<RefundsResponse> getRefunds();
@@ -60,6 +66,9 @@ public interface Endpoints
     @GET("transactions/refunds/{transactionId}")
     Call<RefundResponse> getRefund(@Path("transactionId") String transactionId);
 
+    @GET("transactions/refunds/{transactionId}")
+    Call<RefundResponse> getRefund(@Path("transactionId") String transactionId, @QueryMap Map<String, String> params);
+
     @POST("transactions/refunds")
     Call<RefundResponse> createRefund(@Body Map<String, Object> params);
 
@@ -68,6 +77,9 @@ public interface Endpoints
 
     @DELETE("transactions/refunds/{transactionId}")
     Call<RefundResponse> deleteRefund(@Path("transactionId") String transactionId);
+
+    @DELETE("transactions/refunds/{transactionId}")
+    Call<RefundResponse> deleteRefund(@Path("transactionId") String transactionId, @QueryMap Map<String, String> params);
 
     @GET("customers")
     Call<CustomersResponse> getCustomers();

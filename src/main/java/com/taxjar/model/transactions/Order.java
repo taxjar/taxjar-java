@@ -13,6 +13,9 @@ public class Order {
     @SerializedName("transaction_date")
     String transactionDate;
 
+    @SerializedName("provider")
+    String provider;
+
     @SerializedName("from_country")
     String fromCountry;
 
@@ -64,6 +67,10 @@ public class Order {
 
     public String getTransactionDate() {
         return transactionDate;
+    }
+
+    public String getProvider() {
+        return provider;
     }
 
     public String getFromCountry() {

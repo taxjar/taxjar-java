@@ -4,6 +4,7 @@
     "user_id": 10649,
     "transaction_date": null,
     "transaction_reference_id": null,
+    "provider": "api",
     "exemption_type": null,
     "from_country": null,
     "from_zip": null,

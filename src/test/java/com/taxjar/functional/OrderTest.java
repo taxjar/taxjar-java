@@ -29,6 +29,7 @@ public class OrderTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("from_transaction_date", "2015/05/01");
         params.put("to_transaction_date", "2015/05/31");
+        params.put("provider", "api");
 
         OrdersResponse res = client.listOrders(params);
         assertEquals("123", res.orders.get(0));
@@ -61,6 +62,7 @@ public class OrderTest extends TestCase {
         Map<String, String> params = new HashMap<>();
         params.put("from_transaction_date", "2015/05/01");
         params.put("to_transaction_date", "2015/05/31");
+        params.put("provider", "api");
 
         client.listOrders(params, new Listener<OrdersResponse>() {
             @Override
@@ -85,6 +87,38 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
+        assertEquals("non_exempt", res.order.getExemptionType());
+        assertEquals("US", res.order.getToCountry());
+        assertEquals("90002", res.order.getToZip());
+        assertEquals("CA", res.order.getToState());
+        assertEquals("LOS ANGELES", res.order.getToCity());
+        assertEquals("123 Palm Grove Ln", res.order.getToStreet());
+        assertEquals(17f, res.order.getAmount());
+        assertEquals(2f, res.order.getShipping());
+        assertEquals(0.95f, res.order.getSalesTax());
+        assertEquals("1", res.order.getLineItems().get(0).getId());
+        assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
+        assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
+        assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+        assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
+        assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
+        assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
+        assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
+    }
+
+    public void testShowOrderWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("orders/show.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        OrderResponse res = client.showOrder("123", params);
+        assertEquals("123", res.order.getTransactionId());
+        assertEquals((Integer) 10649, res.order.getUserId());
+        assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
         assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
@@ -115,6 +149,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
                 assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
@@ -141,6 +176,45 @@ public class OrderTest extends TestCase {
         });
     }
 
+    public void testShowOrderAsyncWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("orders/show.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        client.showOrder("123", params, new Listener<OrderResponse>() {
+            @Override
+            public void onSuccess(OrderResponse res) {
+                assertEquals("123", res.order.getTransactionId());
+                assertEquals((Integer) 10649, res.order.getUserId());
+                assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
+                assertEquals("non_exempt", res.order.getExemptionType());
+                assertEquals("US", res.order.getToCountry());
+                assertEquals("90002", res.order.getToZip());
+                assertEquals("CA", res.order.getToState());
+                assertEquals("LOS ANGELES", res.order.getToCity());
+                assertEquals("123 Palm Grove Ln", res.order.getToStreet());
+                assertEquals(17f, res.order.getAmount());
+                assertEquals(2f, res.order.getShipping());
+                assertEquals(0.95f, res.order.getSalesTax());
+                assertEquals("1", res.order.getLineItems().get(0).getId());
+                assertEquals((Integer) 1, res.order.getLineItems().get(0).getQuantity());
+                assertEquals("12-34243-0", res.order.getLineItems().get(0).getProductIdentifier());
+                assertEquals("Heavy Widget", res.order.getLineItems().get(0).getDescription());
+                assertEquals("20010", res.order.getLineItems().get(0).getProductTaxCode());
+                assertEquals(15f, res.order.getLineItems().get(0).getUnitPrice());
+                assertEquals(0f, res.order.getLineItems().get(0).getDiscount());
+                assertEquals(0.95f, res.order.getLineItems().get(0).getSalesTax());
+            }
+
+            @Override
+            public void onError(TaxjarException error) {
+            }
+        });
+    }
+
     public void testCreateOrder() throws TaxjarException {
         MockInterceptor interceptor = new MockInterceptor("orders/show.json");
         client = new TaxjarMock("TEST", interceptor);
@@ -148,6 +222,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("provider", "api");
         params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
@@ -172,6 +247,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
         assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
@@ -198,6 +274,7 @@ public class OrderTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "123");
         params.put("transaction_date", "2015/05/04");
+        params.put("provider", "api");
         params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
@@ -225,6 +302,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
                 assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
@@ -282,6 +360,7 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
         assertEquals("non_exempt", res.order.getExemptionType());
         assertEquals("US", res.order.getToCountry());
         assertEquals("90002", res.order.getToZip());
@@ -335,6 +414,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals("2015-05-14T00:00:00Z", res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
                 assertEquals("non_exempt", res.order.getExemptionType());
                 assertEquals("US", res.order.getToCountry());
                 assertEquals("90002", res.order.getToZip());
@@ -369,6 +449,31 @@ public class OrderTest extends TestCase {
         assertEquals("123", res.order.getTransactionId());
         assertEquals((Integer) 10649, res.order.getUserId());
         assertEquals(null, res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
+        assertEquals(null, res.order.getExemptionType());
+        assertEquals(null, res.order.getToCountry());
+        assertEquals(null, res.order.getToZip());
+        assertEquals(null, res.order.getToState());
+        assertEquals(null, res.order.getToCity());
+        assertEquals(null, res.order.getToStreet());
+        assertEquals(null, res.order.getAmount());
+        assertEquals(null, res.order.getShipping());
+        assertEquals(null, res.order.getSalesTax());
+        assertEquals(Collections.emptyList(), res.order.getLineItems());
+    }
+
+    public void testDeleteOrderWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("orders/delete.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        OrderResponse res = client.deleteOrder("123", params);
+        assertEquals("123", res.order.getTransactionId());
+        assertEquals((Integer) 10649, res.order.getUserId());
+        assertEquals(null, res.order.getTransactionDate());
+        assertEquals("api", res.order.getProvider());
         assertEquals(null, res.order.getExemptionType());
         assertEquals(null, res.order.getToCountry());
         assertEquals(null, res.order.getToZip());
@@ -392,6 +497,7 @@ public class OrderTest extends TestCase {
                 assertEquals("123", res.order.getTransactionId());
                 assertEquals((Integer) 10649, res.order.getUserId());
                 assertEquals(null, res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
                 assertEquals(null, res.order.getExemptionType());
                 assertEquals(null, res.order.getToCountry());
                 assertEquals(null, res.order.getToZip());
@@ -407,6 +513,38 @@ public class OrderTest extends TestCase {
             @Override
             public void onError(TaxjarException error)
             {
+            }
+        });
+    }
+
+    public void testDeleteOrderAsyncWithParams() throws TaxjarException {
+        MockInterceptor interceptor = new MockInterceptor("orders/delete.json");
+        client = new TaxjarMock("TEST", interceptor);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("provider", "api");
+
+        client.deleteOrder("123", params, new Listener<OrderResponse>() {
+            @Override
+            public void onSuccess(OrderResponse res) {
+                assertEquals("123", res.order.getTransactionId());
+                assertEquals((Integer) 10649, res.order.getUserId());
+                assertEquals(null, res.order.getTransactionDate());
+                assertEquals("api", res.order.getProvider());
+                assertEquals(null, res.order.getExemptionType());
+                assertEquals(null, res.order.getToCountry());
+                assertEquals(null, res.order.getToZip());
+                assertEquals(null, res.order.getToState());
+                assertEquals(null, res.order.getToCity());
+                assertEquals(null, res.order.getToStreet());
+                assertEquals(null, res.order.getAmount());
+                assertEquals(null, res.order.getShipping());
+                assertEquals(null, res.order.getSalesTax());
+                assertEquals(Collections.emptyList(), res.order.getLineItems());
+            }
+
+            @Override
+            public void onError(TaxjarException error) {
             }
         });
     }

@@ -17,6 +17,9 @@ public class Refund {
     @SerializedName("transaction_reference_id")
     String transactionReferenceId;
 
+    @SerializedName("provider")
+    String provider;
+
     @SerializedName("from_country")
     String fromCountry;
 
@@ -72,6 +75,10 @@ public class Refund {
 
     public String getTransactionDate() {
         return transactionDate;
+    }
+
+    public String getProvider() {
+        return provider;
     }
 
     public String getTransactionReferenceId() {
