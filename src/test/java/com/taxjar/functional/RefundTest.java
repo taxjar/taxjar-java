@@ -87,8 +87,9 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
-        assertEquals("api", res.refund.getProvider());
         assertEquals("123", res.refund.getTransactionReferenceId());
+        assertEquals("api", res.refund.getProvider());
+        assertEquals("non_exempt", res.refund.getExemptionType());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
         assertEquals("CA", res.refund.getToState());
@@ -118,8 +119,9 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
-        assertEquals("api", res.refund.getProvider());
         assertEquals("123", res.refund.getTransactionReferenceId());
+        assertEquals("api", res.refund.getProvider());
+        assertEquals("non_exempt", res.refund.getExemptionType());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
         assertEquals("CA", res.refund.getToState());
@@ -151,6 +153,7 @@ public class RefundTest extends TestCase {
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals("non_exempt", res.refund.getExemptionType());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -191,6 +194,7 @@ public class RefundTest extends TestCase {
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals("non_exempt", res.refund.getExemptionType());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -223,6 +227,7 @@ public class RefundTest extends TestCase {
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
         params.put("provider", "api");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -246,8 +251,9 @@ public class RefundTest extends TestCase {
         assertEquals("321", res.refund.getTransactionId());
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
-        assertEquals("api", res.refund.getProvider());
         assertEquals("123", res.refund.getTransactionReferenceId());
+        assertEquals("api", res.refund.getProvider());
+        assertEquals("non_exempt", res.refund.getExemptionType());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
         assertEquals("CA", res.refund.getToState());
@@ -274,6 +280,7 @@ public class RefundTest extends TestCase {
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
         params.put("provider", "api");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -302,6 +309,7 @@ public class RefundTest extends TestCase {
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals("non_exempt", res.refund.getExemptionType());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -334,6 +342,7 @@ public class RefundTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -359,6 +368,7 @@ public class RefundTest extends TestCase {
         assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
         assertEquals("123", res.refund.getTransactionReferenceId());
         assertEquals("api", res.refund.getProvider());
+        assertEquals("non_exempt", res.refund.getExemptionType());
         assertEquals("US", res.refund.getToCountry());
         assertEquals("90002", res.refund.getToZip());
         assertEquals("CA", res.refund.getToState());
@@ -384,6 +394,7 @@ public class RefundTest extends TestCase {
         Map<String, Object> params = new HashMap<>();
         params.put("transaction_id", "321");
         params.put("transaction_date", "2015/05/04");
+        params.put("exemption_type", "non_exempt");
         params.put("to_country", "US");
         params.put("to_zip", "90002");
         params.put("to_city", "Los Angeles");
@@ -412,6 +423,7 @@ public class RefundTest extends TestCase {
                 assertEquals("2015-05-14T00:00:00Z", res.refund.getTransactionDate());
                 assertEquals("123", res.refund.getTransactionReferenceId());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals("non_exempt", res.refund.getExemptionType());
                 assertEquals("US", res.refund.getToCountry());
                 assertEquals("90002", res.refund.getToZip());
                 assertEquals("CA", res.refund.getToState());
@@ -446,6 +458,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals(null, res.refund.getTransactionDate());
         assertEquals("api", res.refund.getProvider());
+        assertEquals(null, res.refund.getExemptionType());
         assertEquals(null, res.refund.getToCountry());
         assertEquals(null, res.refund.getToZip());
         assertEquals(null, res.refund.getToState());
@@ -469,6 +482,7 @@ public class RefundTest extends TestCase {
         assertEquals((Integer) 10649, res.refund.getUserId());
         assertEquals(null, res.refund.getTransactionDate());
         assertEquals("api", res.refund.getProvider());
+        assertEquals(null, res.refund.getExemptionType());
         assertEquals(null, res.refund.getToCountry());
         assertEquals(null, res.refund.getToZip());
         assertEquals(null, res.refund.getToState());
@@ -492,6 +506,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals(null, res.refund.getTransactionDate());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals(null, res.refund.getExemptionType());
                 assertEquals(null, res.refund.getToCountry());
                 assertEquals(null, res.refund.getToZip());
                 assertEquals(null, res.refund.getToState());
@@ -524,6 +539,7 @@ public class RefundTest extends TestCase {
                 assertEquals((Integer) 10649, res.refund.getUserId());
                 assertEquals(null, res.refund.getTransactionDate());
                 assertEquals("api", res.refund.getProvider());
+                assertEquals(null, res.refund.getExemptionType());
                 assertEquals(null, res.refund.getToCountry());
                 assertEquals(null, res.refund.getToZip());
                 assertEquals(null, res.refund.getToState());
