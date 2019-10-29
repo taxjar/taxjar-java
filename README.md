@@ -1,8 +1,8 @@
 # TaxJar Sales Tax API for Java ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/taxjar/taxjar-java?style=flat-square&label=release&sort=semver)
 
-<a href="http://developers.taxjar.com"><img src="http://www.taxjar.com/img/TJ_logo_color_office_png.png" alt="TaxJar" width="220"></a>
+<a href="https://developers.taxjar.com"><img src="https://www.taxjar.com/img/TJ_logo_color_office_png.png" alt="TaxJar" width="220"></a>
 
-Official Java client for [SmartCalcs](http://www.taxjar.com/api/) by [TaxJar](http://www.taxjar.com). For the API documentation, please visit [http://developers.taxjar.com/api](http://developers.taxjar.com/api/reference/?java).
+Official Java client for [SmartCalcs](https://www.taxjar.com/api/) by [TaxJar](https://www.taxjar.com). For the API documentation, please visit [https://developers.taxjar.com/api](https://developers.taxjar.com/api/reference/?java).
 
 <hr>
 
@@ -17,7 +17,6 @@ Official Java client for [SmartCalcs](http://www.taxjar.com/api/) by [TaxJar](ht
 [License](#license)<br>
 [Support](#support)<br>
 [Contributing](#contributing)
-
 
 <hr>
 
@@ -956,11 +955,11 @@ public class SandboxExample {
 
 ## Tests
 
-We use [JUnit](http://junit.org/) v3.8.1 with a custom interceptor for Retrofit to directly test client methods.
+We use [JUnit](https://junit.org/) v3.8.1 with a custom interceptor for Retrofit to directly test client methods.
 
 ## More Information
 
-More information can be found at [TaxJar Developers](http://developers.taxjar.com).
+More information can be found at [TaxJar Developers](https://developers.taxjar.com).
 
 ## License
 
