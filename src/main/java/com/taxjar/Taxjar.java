@@ -423,7 +423,7 @@ public class Taxjar {
         call.enqueue(new ApiCallback<>(listener));
     }
 
-    private String encodePathParam(String param) {
+    private static String encodePathParam(String param) {
         try {
             param = new URI(null, null, param).getRawFragment();
         } catch (URISyntaxException e) {
