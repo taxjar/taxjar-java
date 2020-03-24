@@ -30,7 +30,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Taxjar {
@@ -71,7 +73,7 @@ public class Taxjar {
             public okhttp3.Response intercept(Chain chain) throws IOException {
                 Request newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + apiToken)
-                        .addHeader("User-Agent", "TaxJarJava/" + VERSION)
+                        .addHeader("User-Agent", getUserAgent())
                         .build();
                 return chain.proceed(newRequest);
             }
@@ -92,6 +94,18 @@ public class Taxjar {
                 .build();
 
         apiService = retrofit.create(Endpoints.class);
+    }
+
+    private static String getUserAgent() {
+        String[] propertyNames = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
+        Set<String> properties = new LinkedHashSet<String>();
+
+        for (String property : propertyNames)
+            properties.add(System.getProperty(property));
+
+        properties.add(VERSION);
+
+        return String.format("TaxJar/Java (%s %s; %s; java %s; %s) taxjar-java/%s", properties.toArray());
     }
 
     public String getApiConfig(String key) {
