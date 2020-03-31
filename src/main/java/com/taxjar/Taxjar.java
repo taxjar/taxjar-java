@@ -102,8 +102,9 @@ public class Taxjar {
         String[] propertyNames = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
         Set<String> properties = new LinkedHashSet<String>();
 
-        for (String property : propertyNames)
+        for (String property : propertyNames) {
             properties.add(System.getProperty(property));
+        }
 
         properties.add(VERSION);
 
