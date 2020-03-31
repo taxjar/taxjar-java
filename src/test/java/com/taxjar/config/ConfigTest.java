@@ -1,8 +1,14 @@
 package com.taxjar.config;
 
+import com.jcabi.matchers.RegexMatchers;
 import com.taxjar.Taxjar;
+
 import junit.framework.TestCase;
 
+import static org.junit.Assert.assertThat;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,5 +48,13 @@ public class ConfigTest extends TestCase {
 
         client.setApiConfig("timeout", 60 * 1000);
         assertEquals(client.getApiConfig("timeout"), "60000");
+    }
+
+    public void testGetUserAgent() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Method getUserAgent = Taxjar.class.getDeclaredMethod("getUserAgent");
+        getUserAgent.setAccessible(true);
+        String userAgent = (String) getUserAgent.invoke(null);
+
+        assertThat(userAgent, RegexMatchers.matchesPattern("^TaxJar/Java \\(.+\\) taxjar-java/\\d+\\.\\d+\\.\\d+$"));
     }
 }
