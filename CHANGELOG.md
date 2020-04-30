@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.0.0] - 2020-04-30
+- Update retrofit dependency to version `2.8.1`; note: this change drops support for TLS 1.1 and TLS 1.0
+
 ## [3.3.0] - 2020-03-31
 - Add information to custom user agent for debugging and informational purposes
 - Fix issue with retrofit dependency not encoding path parameters properly
@@ -41,7 +44,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-07-12
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/taxjar/taxjar-java/compare/v3.3.0...v4.0.0
 [3.3.0]: https://github.com/taxjar/taxjar-java/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/taxjar/taxjar-java/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/taxjar/taxjar-java/compare/v3.0.0...v3.1.0
