@@ -4,7 +4,7 @@
 
   <groupId>com.taxjar</groupId>
   <artifactId>taxjar-java</artifactId>
-  <version>3.3.0</version>
+  <version>4.0.0</version>
   <packaging>jar</packaging>
 
   <name>taxjar-java</name>
@@ -45,12 +45,12 @@
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>retrofit</artifactId>
-      <version>2.5.0</version>
+      <version>2.8.1</version>
     </dependency>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>converter-gson</artifactId>
-      <version>2.5.0</version>
+      <version>2.8.1</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
