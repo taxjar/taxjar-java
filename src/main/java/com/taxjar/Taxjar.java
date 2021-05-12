@@ -111,11 +111,11 @@ public class Taxjar {
         return String.format("TaxJar/Java (%s %s; %s; java %s; %s) taxjar-java/%s", properties.toArray());
     }
 
-    public String getApiConfig(String key) {
+    public Object getApiConfig(String key) {
         try {
-            return getClass().getDeclaredField(key).get(this).toString();
+            return getClass().getDeclaredField(key).get(this);
         } catch (NoSuchFieldException | IllegalAccessException ex) {
-            return "";
+            return null;
         }
     }
 
