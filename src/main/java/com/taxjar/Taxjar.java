@@ -45,6 +45,7 @@ public class Taxjar {
     protected Endpoints apiService;
     protected String apiUrl;
     protected String apiToken;
+    protected Map<String, String> headers;
     protected long timeout = 30000;
 
     public Taxjar(final String apiToken) {
@@ -73,11 +74,17 @@ public class Taxjar {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
+                Request.Builder requestBuilder = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + apiToken)
-                        .addHeader("User-Agent", getUserAgent())
-                        .build();
-                return chain.proceed(newRequest);
+                        .addHeader("User-Agent", getUserAgent());
+
+                if (headers != null) {
+                    for (Map.Entry<String, String> header : headers.entrySet()) {
+                        requestBuilder.addHeader(header.getKey(), header.getValue());
+                    }
+                }
+
+                return chain.proceed(requestBuilder.build());
             }
         })
                 .connectTimeout(this.timeout, TimeUnit.MILLISECONDS)

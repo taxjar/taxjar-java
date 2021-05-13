@@ -25,13 +25,19 @@ public class ConfigTest extends TestCase {
         params.put("apiUrl", Taxjar.SANDBOX_API_URL);
         params.put("timeout", 60 * 1000);
 
+        Map<String, String> headers = new HashMap<>();
+        headers.put("x-api-version", "2020-08-07");
+        params.put("headers", headers);
+
         client = new Taxjar("TEST", params);
         assertEquals(client.getApiConfig("apiUrl"), Taxjar.SANDBOX_API_URL);
         assertEquals((long) client.getApiConfig("timeout"), 60000);
+        assertEquals(client.getApiConfig("headers"), headers);
 
         client2 = new Taxjar("TEST2");
         assertEquals(client.getApiConfig("apiToken"), "TEST");
         assertEquals(client2.getApiConfig("apiToken"), "TEST2");
+        assertEquals(client2.getApiConfig("headers"), null);
     }
 
     public void testGetApiConfig() {
@@ -47,6 +53,12 @@ public class ConfigTest extends TestCase {
 
         client.setApiConfig("timeout", 60 * 1000);
         assertEquals((long) client.getApiConfig("timeout"), 60000);
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("x-api-version", "2020-08-07");
+
+        client.setApiConfig("headers", headers);
+        assertEquals(client.getApiConfig("headers"), headers);
     }
 
     public void testGetUserAgent() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
