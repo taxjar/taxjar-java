@@ -905,6 +905,34 @@ public class SummarizedRatesExample {
 
 You can pass additional options using `setApiConfig` or when instantiating the client for the following:
 
+### API Version / Headers
+
+Pass an API version with `x-api-version` or pass additional request headers:
+
+```java
+import com.taxjar.Taxjar;
+import java.util.HashMap;
+import java.util.Map;
+
+public class CustomHeaderExample {
+
+    public static void main(String[] args) {
+        // Custom header when instantiating the client
+        Map<String, Object> params = new HashMap<>();
+        Map<String, String> headers = new HashMap<>();
+        
+        headers.put("x-api-version", "2020-08-07");
+        params.put("headers", headers);
+
+        Taxjar client = new Taxjar("YOUR API TOKEN", params);
+
+        // Custom header via `setApiConfig`
+        client.setApiConfig("headers", headers);
+    }
+
+}
+```
+
 ### Timeouts
 
 The default timeout is 30 seconds (specified in milliseconds).

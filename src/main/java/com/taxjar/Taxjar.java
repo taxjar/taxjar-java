@@ -45,6 +45,7 @@ public class Taxjar {
     protected Endpoints apiService;
     protected String apiUrl;
     protected String apiToken;
+    protected Map<String, String> headers;
     protected long timeout = 30000;
 
     public Taxjar(final String apiToken) {
@@ -73,11 +74,17 @@ public class Taxjar {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
+                Request.Builder requestBuilder = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + apiToken)
-                        .addHeader("User-Agent", getUserAgent())
-                        .build();
-                return chain.proceed(newRequest);
+                        .addHeader("User-Agent", getUserAgent());
+
+                if (headers != null) {
+                    for (Map.Entry<String, String> header : headers.entrySet()) {
+                        requestBuilder.addHeader(header.getKey(), header.getValue());
+                    }
+                }
+
+                return chain.proceed(requestBuilder.build());
             }
         })
                 .connectTimeout(this.timeout, TimeUnit.MILLISECONDS)
@@ -98,7 +105,7 @@ public class Taxjar {
         apiService = retrofit.create(Endpoints.class);
     }
 
-    private static String getUserAgent() {
+    protected static String getUserAgent() {
         String[] propertyNames = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
         Set<String> properties = new LinkedHashSet<String>();
 
@@ -111,11 +118,11 @@ public class Taxjar {
         return String.format("TaxJar/Java (%s %s; %s; java %s; %s) taxjar-java/%s", properties.toArray());
     }
 
-    public String getApiConfig(String key) {
+    public Object getApiConfig(String key) {
         try {
-            return getClass().getDeclaredField(key).get(this).toString();
+            return getClass().getDeclaredField(key).get(this);
         } catch (NoSuchFieldException | IllegalAccessException ex) {
-            return "";
+            return null;
         }
     }
 

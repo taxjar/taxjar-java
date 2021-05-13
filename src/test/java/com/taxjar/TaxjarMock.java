@@ -34,15 +34,22 @@ public final class TaxjarMock extends Taxjar {
         final OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
+                Request.Builder requestBuilder = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + apiToken)
-                        .build();
-                return chain.proceed(newRequest);
+                        .addHeader("User-Agent", getUserAgent());
+
+                if (headers != null) {
+                    for (Map.Entry<String, String> header : headers.entrySet()) {
+                        requestBuilder.addHeader(header.getKey(), header.getValue());
+                    }
+                }
+
+                return chain.proceed(requestBuilder.build());
             }
         }).addInterceptor(interceptor)
-                .connectTimeout(timeout, TimeUnit.MILLISECONDS)
-                .writeTimeout(timeout, TimeUnit.MILLISECONDS)
-                .readTimeout(timeout, TimeUnit.MILLISECONDS)
+                .connectTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .writeTimeout(this.timeout, TimeUnit.MILLISECONDS)
+                .readTimeout(this.timeout, TimeUnit.MILLISECONDS)
                 .build();
 
         Gson gson = new GsonBuilder()
@@ -50,7 +57,7 @@ public final class TaxjarMock extends Taxjar {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(DEFAULT_API_URL + "/" + API_VERSION + "/")
+                .baseUrl(this.apiUrl + "/" + API_VERSION + "/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
