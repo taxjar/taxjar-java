@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.0.0] - 2021-05-13
+- Support custom headers and API version via `x-api-version`
+- Change return type of `getApiConfig` method from `String` to `Object`  
+- Update junit dependency to version `4.13.1`
+
 ## [4.0.0] - 2020-04-30
 - Update retrofit dependency to version `2.8.1`; note: this change drops support for TLS 1.1 and TLS 1.0
 
@@ -44,7 +49,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-07-12
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v5.0.0...HEAD
+[5.0.0]: https://github.com/taxjar/taxjar-java/compare/v4.0.0...v5.0.0
 [4.0.0]: https://github.com/taxjar/taxjar-java/compare/v3.3.0...v4.0.0
 [3.3.0]: https://github.com/taxjar/taxjar-java/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/taxjar/taxjar-java/compare/v3.1.0...v3.2.0
