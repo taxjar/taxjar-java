@@ -105,7 +105,7 @@ public class Taxjar {
         apiService = retrofit.create(Endpoints.class);
     }
 
-    private static String getUserAgent() {
+    protected static String getUserAgent() {
         String[] propertyNames = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
         Set<String> properties = new LinkedHashSet<String>();
 
