@@ -1,6 +1,7 @@
 package com.taxjar.exception;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
@@ -25,7 +26,14 @@ public class TaxjarException extends Exception {
 
         try {
             JsonObject json = gson.fromJson(errorMessage, JsonObject.class);
-            return json.get("error").getAsString() + " - " + json.get("detail").getAsString();
+            JsonElement error = json.get("error");
+            JsonElement detail = json.get("detail");
+
+            if (error != null && detail != null) {
+                return error.getAsString() + " - " + detail.getAsString();
+            } else {
+                return errorMessage;
+            }
         } catch (JsonSyntaxException e) {
             return errorMessage;
         }
@@ -36,7 +44,13 @@ public class TaxjarException extends Exception {
 
         try {
             JsonObject json = gson.fromJson(errorMessage, JsonObject.class);
-            return json.get("status").getAsInt();
+            JsonElement status = json.get("status");
+
+            if (status != null) {
+                return status.getAsInt();
+            } else {
+                return 0;
+            }
         } catch (JsonSyntaxException e) {
             return 0;
         }

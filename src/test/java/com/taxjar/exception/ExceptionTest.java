@@ -115,4 +115,40 @@ public class ExceptionTest extends TestCase {
 
         server.shutdown();
     }
+
+    public void testJsonMissingError() {
+        String json = "{\"detail\":\"\", \"status\":400}";
+        TaxjarException e = new TaxjarException(json);
+
+        assertTrue(e instanceof TaxjarException);
+        assertEquals(json, e.getMessage());
+        assertEquals((Integer) 400, e.getStatusCode());
+    }
+
+    public void testJsonMissingDetail() {
+        String json = "{\"error\":\"\", \"status\":400}";
+        TaxjarException e = new TaxjarException(json);
+
+        assertTrue(e instanceof TaxjarException);
+        assertEquals(json, e.getMessage());
+        assertEquals((Integer) 400, e.getStatusCode());
+    }
+
+    public void testJsonMissingStatus() {
+        String json = "{\"error\":\"\", \"detail\":\"\"}";
+        TaxjarException e = new TaxjarException(json);
+
+        assertTrue(e instanceof TaxjarException);
+        assertEquals(" - ", e.getMessage());
+        assertEquals((Integer) 0, e.getStatusCode());
+    }
+
+    public void testEmptyJson() {
+        String json = "{}";
+        TaxjarException e = new TaxjarException(json);
+
+        assertTrue(e instanceof TaxjarException);
+        assertEquals(json, e.getMessage());
+        assertEquals((Integer) 0, e.getStatusCode());
+    }
 }
