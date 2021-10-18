@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.0.1] - 2021-10-18
+- Fix API error response handling without `error`, `detail`, or `status` keys
+
 ## [5.0.0] - 2021-05-13
 - Support custom headers and API version via `x-api-version`
 - Change return type of `getApiConfig` method from `String` to `Object`  
@@ -49,7 +52,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-07-12
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v5.0.1...HEAD
+[5.0.1]: https://github.com/taxjar/taxjar-java/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/taxjar/taxjar-java/compare/v4.0.0...v5.0.0
 [4.0.0]: https://github.com/taxjar/taxjar-java/compare/v3.3.0...v4.0.0
 [3.3.0]: https://github.com/taxjar/taxjar-java/compare/v3.2.0...v3.3.0
