@@ -20,7 +20,7 @@ public class ApiRequest<T> {
             if (response.isSuccessful()) {
                 return response.body();
             } else {
-                throw new TaxjarException(response.errorBody().string());
+                throw new TaxjarException(response.errorBody().string(), response.code());
             }
         } catch (IOException e) {
             throw new ApiConnectionException(e.getMessage(), e);
