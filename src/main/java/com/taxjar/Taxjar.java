@@ -41,7 +41,7 @@ public class Taxjar {
     public static final String DEFAULT_API_URL = "https://api.taxjar.com";
     public static final String SANDBOX_API_URL = "https://api.sandbox.taxjar.com";
     public static final String API_VERSION = "v2";
-    public static final String VERSION = "5.0.2";
+    public static final String VERSION = "5.0.3";
     protected Endpoints apiService;
     protected String apiUrl;
     protected String apiToken;
