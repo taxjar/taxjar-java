@@ -8,6 +8,11 @@ import com.google.gson.JsonSyntaxException;
 public class TaxjarException extends Exception {
     private Integer statusCode;
 
+    public TaxjarException(String errorMessage, int statusCode) {
+        super(parseMessage(errorMessage), null);
+        this.statusCode = parseStatusCode(errorMessage, statusCode);
+    }
+
     public TaxjarException(String errorMessage) {
         this(errorMessage, null);
     }
@@ -24,6 +29,8 @@ public class TaxjarException extends Exception {
     private static String parseMessage(String errorMessage) {
         Gson gson = new Gson();
 
+        if (errorMessage == null || errorMessage.equals("")) return "";
+
         try {
             JsonObject json = gson.fromJson(errorMessage, JsonObject.class);
             JsonElement error = json.get("error");
@@ -39,8 +46,18 @@ public class TaxjarException extends Exception {
         }
     }
 
+    private static Integer parseStatusCode(String errorMessage, int statusCode) {
+        if (errorMessage == null || errorMessage.equals("")) {
+            return statusCode;
+        } else {
+            return parseStatusCode(errorMessage);
+        }
+    }
+
     private static Integer parseStatusCode(String errorMessage) {
         Gson gson = new Gson();
+
+        if (errorMessage == null) return 0;
 
         try {
             JsonObject json = gson.fromJson(errorMessage, JsonObject.class);

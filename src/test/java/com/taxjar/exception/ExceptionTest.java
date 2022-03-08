@@ -1,5 +1,7 @@
 package com.taxjar.exception;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.taxjar.MockInterceptor;
 import com.taxjar.Taxjar;
 import com.taxjar.TaxjarMock;
@@ -150,5 +152,37 @@ public class ExceptionTest extends TestCase {
         assertTrue(e instanceof TaxjarException);
         assertEquals(json, e.getMessage());
         assertEquals((Integer) 0, e.getStatusCode());
+    }
+
+    public void testNullErrorMessage() {
+        TaxjarException e = new TaxjarException(null);
+
+        assertEquals("", e.getMessage());
+        assertEquals((Integer) 0, e.getStatusCode());
+    }
+
+    public void test500Response() throws IOException {
+        TaxjarException e = null;
+        MockWebServer server = new MockWebServer();
+        MockResponse response = new MockResponse().setResponseCode(500);
+
+        server.enqueue(response);
+        server.start();
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("apiUrl", "http://" + server.getHostName() + ":" + server.getPort());
+        params.put("timeout", 500);
+        Taxjar client = new Taxjar("TEST", params);
+
+        try {
+            CategoryResponse res = client.categories();
+        } catch (TaxjarException ex) {
+            e = ex;
+        }
+
+        assertEquals("", e.getMessage());
+        assertEquals((Integer) 500, e.getStatusCode());
+
+        server.shutdown();
     }
 }
