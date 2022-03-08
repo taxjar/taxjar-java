@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.0.3] - 2022-03-08
+- Correctly handle 500 errors
+
 ## [5.0.2] - 2022-01-26
 - Add Gson dependency to patch vulnerability
 
@@ -55,7 +58,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-07-12
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v5.0.2...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-java/compare/v5.0.3...HEAD
+[5.0.3]: https://github.com/taxjar/taxjar-java/compare/v5.0.2...v5.0.3
 [5.0.2]: https://github.com/taxjar/taxjar-java/compare/v5.0.1...v5.0.2
 [5.0.1]: https://github.com/taxjar/taxjar-java/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/taxjar/taxjar-java/compare/v4.0.0...v5.0.0
